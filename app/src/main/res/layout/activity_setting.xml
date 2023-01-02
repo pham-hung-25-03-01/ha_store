@@ -21,7 +21,7 @@
         >
 
         <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/btn_scan"
+            android:id="@+id/btn_back"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_alignParentStart="true"
@@ -32,7 +32,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@+id/btn_scan"
+            android:layout_toEndOf="@+id/btn_back"
             android:text="Cài đặt"
             android:layout_centerVertical="true"
             android:textColor="@color/black"
@@ -82,13 +82,38 @@
                 android:background="@color/white">
 
                 <TextView
+                    android:id="@+id/btn_address"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="?android:attr/selectableItemBackgroundBorderless"
                     android:clickable="true"
                     android:padding="15dp"
-                    android:text="Sổ địa chỉ"
+                    android:text="Địa chỉ"
                     android:textColor="@color/black"
+                    android:textSize="13sp" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="1dp"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:clickable="true"
+                    android:padding="15dp"
+                    android:text="Số dư"
+                    android:textColor="@color/black"
+                    android:textSize="13sp" />
+                <TextView
+                    android:id="@+id/txt_wallet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:padding="15dp"
+                    android:text="0 VND"
                     android:textSize="13sp" />
             </RelativeLayout>
 
@@ -227,6 +252,7 @@
                 >
 
                 <TextView
+                    android:id="@+id/btn_logout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Đăng xuất"

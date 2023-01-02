@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:background="@color/white"
-    tools:context=".bus.AccountInfoActivity">
+    tools:context=".bus.AddressActivity">
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
@@ -32,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/btn_back"
-            android:text="Thông tin tài khoản"
+            android:text="Thông tin địa chỉ"
             android:layout_centerVertical="true"
             android:textColor="@color/black"
             android:textSize="13sp"
@@ -66,18 +66,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="15dp"
-                    android:text="Tên"
+                    android:text="Số nhà"
                     android:textColor="@color/black"
                     android:textSize="13sp" />
 
                 <TextView
-                    android:id="@+id/txt_ho_ten"
+                    android:id="@+id/txt_so_nha"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
                     android:padding="15dp"
-                    android:text="Nguyen Van A"
+                    android:text="KTX Khu B"
                     android:textSize="13sp" />
 
             </RelativeLayout>
@@ -92,57 +92,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="15dp"
-                    android:text="ID của bạn"
+                    android:text="Phường/xã"
                     android:textColor="@color/black"
                     android:textSize="13sp" />
                 <TextView
-                    android:id="@+id/txt_id"
+                    android:id="@+id/txt_phuong_xa"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
                     android:padding="15dp"
-                    android:text="7685594903"
-                    android:textSize="13sp" />
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:background="@color/white">
-
-                <TextView
-                    android:id="@+id/txt_mat_khau"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="15dp"
-                    android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
-                    android:text="Thay đổi mật khẩu"
-                    android:textColor="@color/black"
-                    android:textSize="13sp" />
-
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="1dp"
-                android:background="@color/white">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="15dp"
-                    android:text="Số điện thoại"
-                    android:textColor="@color/black"
-                    android:textSize="13sp" />
-                <TextView
-                    android:id="@+id/txt_so_dien_thoai"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
-                    android:padding="15dp"
-                    android:text="036*****69"
+                    android:text="Đông Hòa"
                     android:textSize="13sp" />
             </RelativeLayout>
             <RelativeLayout
@@ -155,17 +115,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="15dp"
-                    android:text="Email"
+                    android:text="Quận/huyện"
                     android:textColor="@color/black"
                     android:textSize="13sp" />
                 <TextView
-                    android:id="@+id/txt_email"
+                    android:id="@+id/txt_quan_huyen"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
                     android:padding="15dp"
-                    android:text="ky******@gmail.com"
+                    android:text="Dĩ An"
                     android:textSize="13sp" />
             </RelativeLayout>
             <RelativeLayout
@@ -178,75 +138,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="15dp"
-                    android:text="Giới tính"
+                    android:text="Tỉnh/thành"
                     android:textColor="@color/black"
                     android:textSize="13sp" />
                 <TextView
-                    android:id="@+id/txt_gioi_tinh"
+                    android:id="@+id/txt_tinh_thanh"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
                     android:padding="15dp"
-                    android:text="Nam"
+                    android:text="Bình Dương"
                     android:textSize="13sp" />
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="1dp"
-                android:background="@color/white">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="15dp"
-                    android:text="Ngày sinh"
-                    android:textColor="@color/black"
-                    android:textSize="13sp" />
-                <TextView
-                    android:id="@+id/txt_ngay_sinh"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
-                    android:padding="15dp"
-                    android:text="2001-01-01"
-                    android:textSize="13sp" />
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:layout_marginTop="8dp"
-                >
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Tài khoản ngân hàng"
-                    android:textSize="13sp"
-                    android:textColor="@color/black"
-                    android:padding="15dp"
-                    android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
-                    />
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:layout_marginTop="1dp"
-                >
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Tài khoản mạng xã hội"
-                    android:textSize="13sp"
-                    android:textColor="@color/black"
-                    android:padding="15dp"
-                    android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
-                    />
             </RelativeLayout>
             <TextView
                 android:layout_width="match_parent"
@@ -254,7 +157,7 @@
                 android:text="Build version: 1.0"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:layout_marginTop="150dp"
+                android:layout_marginTop="400dp"
                 android:layout_gravity="bottom"
                 />
         </LinearLayout>

@@ -22,7 +22,7 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
         //startActivity(new Intent(SplashActivity.this, HomeActivity.class));
         // close splash activity
-        Intent login = new Intent(SplashActivity.this, LoginActivity.class);
+        Intent login = new Intent(SplashActivity.this, HomeActivity.class);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

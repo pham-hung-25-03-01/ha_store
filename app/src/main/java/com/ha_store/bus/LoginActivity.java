@@ -12,7 +12,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
@@ -21,6 +23,12 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.material.textfield.TextInputEditText;
 import com.ha_store.R;
 import com.ha_store.dao.KhachHangDAO;
+import com.ha_store.dao.PasswordGenerator;
+import com.ha_store.dto.KhachHangDTO;
+
+import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
@@ -92,15 +100,59 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             handleSignInResult(result);
         }
     }
+//    private void handleSignInResult(GoogleSignInResult result){
+//        if(result.isSuccess()){
+//            gotoProfile();
+//        }else{
+//            Toast.makeText(getApplicationContext(),"Sign in cancel",Toast.LENGTH_LONG).show();
+//        }
+//    }
     private void handleSignInResult(GoogleSignInResult result){
         if(result.isSuccess()){
+            GoogleSignInAccount account=result.getSignInAccount();
+            KhachHangDTO kh = kh_dao.LayThongTinKhachHangTheoEmail(account.getEmail());
+            if(kh == null){
+                PasswordGenerator passwordGenerator = new PasswordGenerator.PasswordGeneratorBuilder()
+                        .useDigits(true)
+                        .useLower(true)
+                        .useUpper(true)
+                        .build();
+                String password = passwordGenerator.generate(8);
+                kh = new KhachHangDTO(
+                        account.getFamilyName(),
+                        account.getGivenName(),
+                        account.getPhotoUrl() == null ? "" : account.getPhotoUrl().toString(),
+                        1,
+                        BigDecimal.valueOf(11112001),
+                        "",
+                        account.getEmail(),
+                        KhachHangDTO.generateHashedPass(password),
+                        "",
+                        "",
+                        "",
+                        "",
+                        BigDecimal.valueOf(0),
+                        convert_date_to_big_decimal(new Date())
+                );
+                kh_dao.dang_ky(kh);
+                kh = kh_dao.LayThongTinKhachHangTheoEmail(account.getEmail());
+            }
+            KhachHangDAO.khach_hang_hien_tai.set_id(kh.get_id());
+            KhachHangDAO.khach_hang_hien_tai.set_email(kh.get_email());
+            KhachHangDAO.khach_hang_hien_tai.set_da_dang_nhap(true);
             gotoProfile();
         }else{
-            Toast.makeText(getApplicationContext(),"Sign in cancel",Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(),"Hủy đăng nhập bằng google",Toast.LENGTH_LONG).show();
         }
     }
     private void gotoProfile(){
-        Intent intent=new Intent(LoginActivity.this,ProfileActivity.class);
+        finish();
+        Toast.makeText(getApplicationContext(),"Đăng nhập thành công",Toast.LENGTH_LONG).show();
+        Intent intent=new Intent(LoginActivity.this,AccountActivity.class);
         startActivity(intent);
+    }
+    private BigDecimal convert_date_to_big_decimal(Date date){
+        SimpleDateFormat b_format = new SimpleDateFormat("ddMMyyyy");
+        return new BigDecimal(b_format.format(date));
     }
 }

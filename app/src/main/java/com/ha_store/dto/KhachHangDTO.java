@@ -45,6 +45,22 @@ public class KhachHangDTO extends BaseDTO{
         this.so_du_vi = so_du_vi;
         this.ngay_khoi_tao = ngay_khoi_tao;
     }
+    public KhachHangDTO(String ho, String ten, String anh_dai_dien_url, Integer gioi_tinh, BigDecimal ngay_sinh, String so_dien_thoai, String email, String mat_khau, String so_nha, String phuong_xa, String quan_huyen, String tinh_thanh, BigDecimal so_du_vi, BigDecimal ngay_khoi_tao) {
+        this.ho = ho;
+        this.ten = ten;
+        this.anh_dai_dien_url = anh_dai_dien_url;
+        this.gioi_tinh = gioi_tinh;
+        this.ngay_sinh = ngay_sinh;
+        this.so_dien_thoai = so_dien_thoai;
+        this.email = email;
+        this.mat_khau = mat_khau;
+        this.so_nha = so_nha;
+        this.phuong_xa = phuong_xa;
+        this.quan_huyen = quan_huyen;
+        this.tinh_thanh = tinh_thanh;
+        this.so_du_vi = so_du_vi;
+        this.ngay_khoi_tao = ngay_khoi_tao;
+    }
 
     public Integer get_id() {
         return id;
@@ -140,7 +156,7 @@ public class KhachHangDTO extends BaseDTO{
     }
 
     public void set_mat_khau(String mat_khau) {
-        this.mat_khau = generate_hashed_pass(mat_khau);
+        this.mat_khau = mat_khau;
     }
 
     public void set_so_nha(String so_nha) {

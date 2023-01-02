@@ -80,6 +80,36 @@ public class KhachHangDAO extends BaseDAO{
             return false;
         }
     }
+    public KhachHangDTO LayThongTinKhachHangTheoEmail(String email){
+        try{
+            KhachHangDTO kh = null;
+            String query = "SELECT * FROM tb_khach_hang WHERE email = ? LIMIT 1";
+            Cursor c = db.rawQuery(query, new String[]{email});
+            if(c.moveToNext()){
+                kh = new KhachHangDTO(
+                        c.getInt(0),
+                        c.getString(1),
+                        c.getString(2),
+                        c.getString(3),
+                        c.getInt(4),
+                        BigDecimal.valueOf(c.getLong(5)),
+                        c.getString(6),
+                        c.getString(7),
+                        c.getString(8),
+                        c.getString(9),
+                        c.getString(10),
+                        c.getString(11),
+                        c.getString(12),
+                        BigDecimal.valueOf(c.getLong(13)),
+                        BigDecimal.valueOf(c.getLong(14))
+                );
+            }
+            return kh;
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
     public List<KhachHangDTO> LayDanhSachKhachHang(){
         try {
             List<KhachHangDTO> ds_kh = new ArrayList<KhachHangDTO>();
@@ -142,7 +172,7 @@ public class KhachHangDAO extends BaseDAO{
     }
     public Boolean CapNhatThongTinKhachHang(KhachHangDTO kh){
         try{
-            String query = "UPDATE tb_khach_hang SET ho = ? AND ten = ? AND anh_dai_dien_url = ? AND gioi_tinh = ? AND ngay_sinh = ? AND so_dien_thoai = ? AND email = ? AND mat_khau = ? AND so_nha = ? AND phuong_xa = ? AND quan_huyen = ? AND tinh_thanh = ? AND so_du_vi = ? AND ngay_khoi_tao = ? WHERE id = ?";
+            String query = "UPDATE tb_khach_hang SET ho = ?, ten = ?, anh_dai_dien_url = ?, gioi_tinh = ?, ngay_sinh = ?, so_dien_thoai = ?, email = ?, mat_khau = ?, so_nha = ?, phuong_xa = ?, quan_huyen = ?, tinh_thanh = ?, so_du_vi = ?, ngay_khoi_tao = ? WHERE id = ?";
             db.execSQL(query, new Object[]{
                     kh.get_ho(),
                     kh.get_ten(),
@@ -153,8 +183,8 @@ public class KhachHangDAO extends BaseDAO{
                     kh.get_email(),
                     kh.get_mat_khau(),
                     kh.get_so_nha(),
-                    kh.get_quan_huyen(),
                     kh.get_phuong_xa(),
+                    kh.get_quan_huyen(),
                     kh.get_tinh_thanh(),
                     kh.get_so_du_vi(),
                     kh.get_ngay_khoi_tao(),
