@@ -1,0 +1,7 @@
+ INSERT INTO tb_khach_hang (ho, ten, anh_dai_dien_url, gioi_tinh, ngay_sinh, so_dien_thoai, email, mat_khau, so_nha, phuong_xa, quan_huyen, tinh_thanh, so_du_vi, ngay_khoi_tao) VALUES ('Phạm', 'Hùng', 'anh_dai_dien_url', 1, 25032001, '0898759325', 'phamhunggl721@gmail.com', '$2a$12$enn9DgMCy74KVv9rNMb7Nu2Hf0ke0PxoppXkLjZlnnqmKxu47K1lu', 'KTX khu B', 'Đông Hòa', 'Dĩ An', 'Bình Dương', 100000, 31122022);
+ INSERT INTO tb_loai_san_pham (ten_loai_san_pham) VALUES ('Quần');
+ INSERT INTO tb_loai_san_pham (ten_loai_san_pham) VALUES ('Áo');
+ INSERT INTO tb_quan_tri_vien (ho, ten, anh_dai_dien_url, gioi_tinh, ngay_sinh, so_dien_thoai, email, mat_khau, quyen_han, ngay_khoi_tao) VALUES ('admin', 'admin', 'anh_dai_dien_url', 1, 11112001, '0367090069', 'admin@hastore.com', '$2a$12$enn9DgMCy74KVv9rNMb7Nu2Hf0ke0PxoppXkLjZlnnqmKxu47K1lu', 1, 31122022);
+ INSERT INTO tb_san_pham (quan_tri_vien_id, loai_san_pham_id, ten_san_pham, chat_lieu, mo_ta, xuat_xu, gioi_tinh, gia_nhap, gia_ban, phan_tram_khuyen_mai, diem_xep_hang, so_luot_xep_hang) VALUES (1,1, 'Quần jean nam trơn, cào xước', 'chất bò cao cấp','Quần jean nam Trơn co dãn, rách gối, cào xước chất bò cao cấp VẢI JEAN CO DÃN cực đẹp jeann form dáng ôm đẹp được đặt may riêng theo mẫu thiết kế của TRUCQUYNHSHOP.Dáng quan jean nam ống côn trẻ trung ôm body tạo nên form skinny jeans nam cho người mặc túi quần lớn rất thuận tiện cho việc đựng Điền thoại iphone bự hoặc ví cỡ bự.','vn',1,100000,179000,0.29, 4.5, 99);
+
+

@@ -1,0 +1,202 @@
+ CREATE TABLE tb_khach_hang
+ (
+ id INTEGER NOT NULL,
+ ho TEXT NOT NULL,
+ ten TEXT NOT NULL,
+ anh_dai_dien_url TEXT NULL,
+ gioi_tinh INTEGER NULL,
+ ngay_sinh NUMERIC NULL,
+ so_dien_thoai TEXT NULL,
+ email TEXT NULL,
+ mat_khau TEXT NULL,
+ so_nha TEXT NULL,
+ phuong_xa TEXT NULL,
+ quan_huyen TEXT NULL,
+ tinh_thanh TEXT NULL,
+ so_du_vi NUMERIC NULL,
+ ngay_khoi_tao NUMERIC NULL,
+ PRIMARY KEY (id)
+ );
+ CREATE TABLE tb_quan_tri_vien
+ (
+ id INTEGER NOT NULL,
+ ho TEXT NULL,
+ ten TEXT NULL,
+ anh_dai_dien_url TEXT NULL,
+ gioi_tinh INTEGER NULL,
+ ngay_sinh NUMERIC NULL,
+ so_dien_thoai TEXT NULL,
+ email TEXT NULL,
+ mat_khau TEXT NULL,
+ quyen_han INTEGER NULL,
+ ngay_khoi_tao NUMERIC NULL,
+ PRIMARY KEY (id)
+ );
+ CREATE TABLE tb_loai_san_pham
+ (
+ id INTEGER NOT NULL,
+ ten_loai_san_pham TEXT NULL,
+ PRIMARY KEY (id)
+ );
+ CREATE TABLE tb_san_pham
+ (
+ id INTEGER NOT NULL,
+ quan_tri_vien_id INTEGER NOT NULL,
+ loai_san_pham_id INTEGER NOT NULL,
+ ten_san_pham TEXT NULL,
+ chat_lieu TEXT NULL,
+ mo_ta TEXT NULL,
+ xuat_xu TEXT NULL,
+ gioi_tinh INTEGER NULL,
+ gia_nhap NUMERIC NOT NULL,
+ gia_ban NUMERIC NOT NULL,
+ phan_tram_khuyen_mai REAL NOT NULL,
+ diem_xep_hang REAL NOT NULL,
+ so_luot_xep_hang INTEGER NOT NULL,
+ PRIMARY KEY (id),
+ FOREIGN KEY(quan_tri_vien_id) REFERENCES tb_quan_tri_vien (id),
+ FOREIGN KEY(loai_san_pham_id) REFERENCES tb_loai_san_pham (id)
+ );
+ CREATE TABLE tb_anh_san_pham
+ (
+ id INTEGER NOT NULL,
+ san_pham_id INTEGER NOT NULL,
+ anh_san_pham_url TEXT NULL,
+ PRIMARY KEY (id),
+ FOREIGN KEY(san_pham_id) REFERENCES tb_san_pham (id)
+ );
+ CREATE TABLE tb_khuyen_mai
+ (
+ id TEXT NOT NULL,
+ phan_tram_khuyen_mai REAL NULL,
+ ngay_bat_dau NUMERIC NULL,
+ ngay_ket_thuc NUMERIC NULL,
+ so_luong INTEGER NULL,
+ PRIMARY KEY (id)
+ );
+ CREATE TABLE tb_don_dat_hang
+ (
+ id INTEGER NOT NULL,
+ khach_hang_id INTEGER NOT NULL,
+ khuyen_mai_id TEXT NOT NULL,
+ ngay_giao NUMERIC NULL,
+ so_nha TEXT NULL,
+ phuong_xa TEXT NULL,
+ quan_huyen TEXT NULL,
+ tinh_thanh TEXT NULL,
+ tong_tien NUMERIC NULL,
+ trang_thai INTEGER NULL,
+ ngay_khoi_tao NUMERIC NULL,
+ PRIMARY KEY (id),
+ FOREIGN KEY(khach_hang_id) REFERENCES tb_khach_hang (id),
+ FOREIGN KEY(khuyen_mai_id) REFERENCES tb_khuyen_mai (id)
+ );
+ CREATE TABLE tb_hinh_thuc_thanh_toan
+ (
+ id INTEGER NOT NULL,
+ ten_hinh_thuc_thanh_toan TEXT NULL,
+ PRIMARY KEY (id)
+ );
+ CREATE TABLE tb_hoa_don
+ (
+ id INTEGER NOT NULL,
+ quan_tri_vien_id INTEGER NOT NULL,
+ tong_tien_da_thanh_toan NUMERIC NULL,
+ trang_thai INTEGER NULL,
+ ngay_khoi_tao NUMERIC NULL,
+ PRIMARY KEY (id),
+ FOREIGN KEY(quan_tri_vien_id) REFERENCES tb_quan_tri_vien (id)
+ );
+ CREATE TABLE tb_chi_tiet_thanh_toan
+ (
+ hinh_thuc_thanh_toan_id INTEGER NOT NULL,
+ hoa_don_id INTEGER NOT NULL,
+ don_dat_hang_id INTEGER NOT NULL,
+ so_tien_da_thanh_toan NUMERIC NULL,
+ PRIMARY KEY (hinh_thuc_thanh_toan_id,don_dat_hang_id),
+ FOREIGN KEY(don_dat_hang_id) REFERENCES tb_don_dat_hang (id),
+ FOREIGN KEY(hinh_thuc_thanh_toan_id) REFERENCES tb_hinh_thuc_thanh_toan (id),
+ FOREIGN KEY(hoa_don_id) REFERENCES tb_hoa_don (id)
+ );
+ CREATE TABLE tb_binh_luan
+ (
+ id INTEGER NOT NULL,
+ khach_hang_id INTEGER NOT NULL,
+ san_pham_id INTEGER NOT NULL,
+ noi_dung TEXT NULL,
+ ngay_binh_luan NUMERIC NULL,
+ PRIMARY KEY (id),
+ FOREIGN KEY(khach_hang_id) REFERENCES tb_khach_hang (id),
+ FOREIGN KEY(san_pham_id) REFERENCES tb_san_pham (id)
+ );
+ CREATE TABLE tb_xep_hang
+ (
+ san_pham_id INTEGER NOT NULL,
+ khach_hang_id INTEGER NOT NULL,
+ diem_xep_hang INTEGER NULL,
+ PRIMARY KEY (san_pham_id,khach_hang_id),
+ FOREIGN KEY(khach_hang_id) REFERENCES tb_khach_hang (id),
+ FOREIGN KEY(san_pham_id) REFERENCES tb_san_pham (id)
+ );
+ CREATE TABLE tb_yeu_thich
+ (
+ khach_hang_id INTEGER NOT NULL,
+ san_pham_id INTEGER NOT NULL,
+ da_yeu_thich INTEGER NULL,
+ PRIMARY KEY (khach_hang_id,san_pham_id),
+ FOREIGN KEY(khach_hang_id) REFERENCES tb_khach_hang (id),
+ FOREIGN KEY(san_pham_id) REFERENCES tb_san_pham (id)
+ );
+ CREATE TABLE tb_kich_thuoc
+ (
+ id INTEGER NOT NULL,
+ ten_kich_thuoc TEXT NOT NULL,
+ PRIMARY KEY (id)
+ );
+ CREATE TABLE tb_kho
+ (
+ san_pham_id INTEGER NOT NULL,
+ kich_thuoc_id INTEGER NOT NULL,
+ so_luong INTEGER NULL,
+ PRIMARY KEY (san_pham_id,kich_thuoc_id),
+ FOREIGN KEY(san_pham_id) REFERENCES tb_san_pham (id),
+ FOREIGN KEY(kich_thuoc_id) REFERENCES tb_kich_thuoc (id)
+ );
+ CREATE TABLE tb_chi_tiet_don_dat_hang
+ (
+ san_pham_id INTEGER NOT NULL,
+ kich_thuoc_id INTEGER NOT NULL,
+ don_dat_hang_id INTEGER NOT NULL,
+ gia_ban NUMERIC NULL,
+ phan_tram_khuyen_mai REAL NULL,
+ so_luong INTEGER NULL,
+ PRIMARY KEY (san_pham_id,kich_thuoc_id,don_dat_hang_id),
+ FOREIGN KEY(san_pham_id,kich_thuoc_id) REFERENCES tb_kho (san_pham_id,kich_thuoc_id),
+ FOREIGN KEY(don_dat_hang_id) REFERENCES tb_don_dat_hang (id)
+ );
+ CREATE TABLE tb_gio_hang
+ (
+ khach_hang_id INTEGER NOT NULL,
+ san_pham_id INTEGER NOT NULL,
+ kich_thuoc_id INTEGER NOT NULL,
+ so_luong INTEGER NULL,
+ PRIMARY KEY (khach_hang_id,san_pham_id,kich_thuoc_id),
+ FOREIGN KEY(khach_hang_id) REFERENCES tb_khach_hang (id),
+ FOREIGN KEY(san_pham_id,kich_thuoc_id) REFERENCES tb_kho (san_pham_id,kich_thuoc_id)
+ );
+ CREATE TABLE tb_su_kien
+ (
+ id INTEGER NOT NULL,
+ ten_su_kien TEXT NOT NULL,
+ thoi_gian_bat_dau NUMERIC NOT NULL,
+ thoi_gian_ket_thuc NUMERIC NOT NULL,
+ PRIMARY KEY (id)
+ );
+ CREATE TABLE tb_san_pham_su_kien
+ (
+ san_pham_id INTEGER NOT NULL,
+ su_kien_id INTEGER NOT NULL,
+ PRIMARY KEY (san_pham_id, su_kien_id),
+ FOREIGN KEY(san_pham_id) REFERENCES tb_san_pham (id),
+ FOREIGN KEY(su_kien_id) REFERENCES tb_su_kien (id)
+ );

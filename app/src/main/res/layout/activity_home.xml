@@ -1,0 +1,525 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".bus.HomeActivity">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/nav_top"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+
+        <LinearLayout
+            android:id="@+id/linearLayout_scan"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/scan"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_scan"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                />
+
+        </LinearLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="296dp"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:paddingStart="12dp"
+            android:background="@drawable/bg_search"
+            app:layout_constraintStart_toEndOf="@id/linearLayout_scan"
+            app:layout_constraintEnd_toStartOf="@id/linearLayout_wallet"
+            android:gravity="center_vertical">
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btn_photo"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_photo"
+                android:scaleType="fitXY"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/btn_search_text"
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:clickable="true"
+                android:background="?android:attr/selectableItemBackground"
+                android:paddingStart="2dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btn_search_icon"
+                app:layout_constraintStart_toEndOf="@id/btn_photo"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/txt_searched"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="điện thoại realme q5"
+                    android:textColor="#8D909D"
+                    android:textSize="11sp"
+                    android:fontFamily="sans-serif-light"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:id="@+id/btn_search_icon"
+                android:layout_width="48dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginEnd="4dp"
+                android:gravity="center_vertical|center_horizontal"
+                android:background="@drawable/bg_gradient_search_icon"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="6dp"
+                    android:clickable="true"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:src="@drawable/ic_search"
+                    app:tint="@color/white" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+            android:id="@+id/linearLayout_wallet"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical|end"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:scaleType="fitXY"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_wallet" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/bg_content"
+        android:contentDescription="@string/app_name"
+        android:scrollbars="none"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nav_top">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                >
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/v2_slider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <me.relex.circleindicator.CircleIndicator3
+                    android:id="@+id/slider_control"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_horizontal|bottom"
+                    />
+            </FrameLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rc_option"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:clipToOutline="true"
+
+                    android:layout_gravity="center"
+                    android:layout_width="40dp"
+                    android:layout_height="22dp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                android:orientation="vertical"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="15dp"
+                android:padding="10dp"
+                android:background="@drawable/bg_card"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="Flash Sale"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:textSize="14dp"
+                        android:layout_weight="1"
+                        android:letterSpacing="0.1"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:textAlignment="textEnd"
+                        android:text="00 : 23 : 41 >"
+                        android:textSize="14dp"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rc_sp_ban_chay"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                android:orientation="vertical"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="15dp"
+                android:padding="10dp"
+                android:background="@drawable/bg_card"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="BEST SELLERS"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:layout_weight="1"
+                        android:letterSpacing="0.1"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:textAlignment="textEnd"
+                        android:text="Xem thêm ngay >"
+                        android:textSize="14sp"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_marginEnd="10dp"
+                        >
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <com.google.android.material.imageview.ShapeableImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="110dp"
+                                android:adjustViewBounds="true"
+                                android:scaleType="centerCrop"
+                                android:background="#E0ECE0"
+                                android:src="@drawable/bg_splash_1"
+                                app:shapeAppearanceOverlay="@style/border_20" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:background="#8CFEA8A8"
+                                android:text="img 1"/>
+                        </FrameLayout>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="TOP"
+                            android:textAlignment="center"
+                            android:textStyle="bold"
+                            android:letterSpacing=".1"
+                            android:textSize="14sp"
+                            android:paddingStart="4dp"
+                            android:paddingTop="6dp"
+                            android:textColor="#B48C4A"
+                            />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="8.7kMua lại"
+                            android:textSize="12sp"
+                            android:textColor="#B48C4A"
+                            android:textAlignment="center"
+                            android:paddingStart="4dp"
+                            />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:backgroundTint="#E3B1B1"
+                            android:textAlignment="center"
+                            android:text="Quần short thể th..."
+                            android:textSize="9sp"
+                            android:paddingStart="8dp"
+                            />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_marginEnd="10dp"
+                        >
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <com.google.android.material.imageview.ShapeableImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="110dp"
+                                android:adjustViewBounds="true"
+                                android:scaleType="centerCrop"
+                                android:background="#E0ECE0"
+                                android:src="@drawable/bg_splash_1"
+                                app:shapeAppearanceOverlay="@style/border_20" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:background="#8CFEA8A8"
+                                android:text="img 1"/>
+                        </FrameLayout>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="TOP"
+                            android:textAlignment="center"
+                            android:textStyle="bold"
+                            android:letterSpacing=".1"
+                            android:textSize="14sp"
+                            android:paddingStart="4dp"
+                            android:paddingTop="6dp"
+                            android:textColor="#B48C4A"
+                            />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="8.7kMua lại"
+                            android:textSize="12sp"
+                            android:textColor="#B48C4A"
+                            android:textAlignment="center"
+                            android:paddingStart="4dp"
+                            />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:backgroundTint="#E3B1B1"
+                            android:textAlignment="center"
+                            android:text="Quần short thể th..."
+                            android:textSize="9sp"
+                            android:paddingStart="8dp"
+                            />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        >
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <com.google.android.material.imageview.ShapeableImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="110dp"
+                                android:adjustViewBounds="true"
+                                android:scaleType="centerCrop"
+                                android:background="#E0ECE0"
+                                android:src="@drawable/bg_splash_1"
+                                app:shapeAppearanceOverlay="@style/border_20" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:background="#8CFEA8A8"
+                                android:text="img 1"/>
+                        </FrameLayout>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="TOP"
+                            android:textAlignment="center"
+                            android:textStyle="bold"
+                            android:letterSpacing=".1"
+                            android:textSize="14sp"
+                            android:paddingStart="4dp"
+                            android:paddingTop="6dp"
+                            android:textColor="#B48C4A"
+                            />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="8.7kMua lại"
+                            android:textSize="12sp"
+                            android:textColor="#B48C4A"
+                            android:textAlignment="center"
+                            android:paddingStart="4dp"
+                            />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:backgroundTint="#E3B1B1"
+                            android:textAlignment="center"
+                            android:text="Quần short thể th..."
+                            android:textSize="9sp"
+                            android:paddingStart="8dp"
+                            />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+            <include layout="@layout/component_cate"/>
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:background="@drawable/bg_card"
+                app:tabMode="fixed"
+                app:tabSelectedTextColor="@color/purple_500"
+                app:tabRippleColor="@null"
+                >
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:icon="@drawable/ic_home_heart"
+                    android:background="@drawable/option_selector"
+                    android:layout="@layout/custom_tab_item"
+                    android:text="Cho bạn"/>
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:icon="@drawable/ic_discount"
+                    android:background="@drawable/option_selector"
+                    android:layout="@layout/custom_tab_item"
+                    android:text="Kh.mãi"/>
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:icon="@drawable/ic_duoi_99k"
+                    android:layout="@layout/custom_tab_item"
+                    android:background="@drawable/option_selector"
+                    android:text="Dưới 99k"/>
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout="@layout/custom_tab_item"
+                    android:icon="@drawable/ic_top_product_rating"
+                    android:background="@drawable/option_selector"
+                    android:text="Tốt nhất"/>
+
+            </com.google.android.material.tabs.TabLayout>
+
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/vp_product_option"
+                android:layout_width="match_parent"
+                android:padding="15dp"
+                android:layout_height="500dp"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="56dp"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:paddingStart="25dp"
+                android:paddingEnd="25dp"
+                android:focusable="true"
+                android:textAllCaps="false"
+                android:background="@drawable/btn_default"
+                android:text="View Reports"
+                />
+        </LinearLayout>
+
+
+    </ScrollView>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_nav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/bottom_nav"
+        app:labelVisibilityMode="labeled"
+        app:itemIconTint="@color/custom_nav_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
+</androidx.constraintlayout.widget.ConstraintLayout>

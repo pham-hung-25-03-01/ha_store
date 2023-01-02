@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:layout_marginStart="10dp"
+    android:layout_marginEnd="11dp"
+    android:id="@+id/item_cate">
+
+    <FrameLayout
+        android:id="@+id/fr_img"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/option_img"
+            android:padding="9dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/bg_dot"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/option_title"
+        android:layout_width="56dp"
+        android:layout_height="26dp"
+        android:text="Uu Dai Thanh Toan"
+        android:textSize="8sp"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:textColor="#404040"
+        app:layout_constraintEnd_toEndOf="@+id/fr_img"
+        app:layout_constraintHorizontal_bias="0.411"
+        app:layout_constraintStart_toStartOf="@+id/fr_img"
+        app:layout_constraintTop_toBottomOf="@+id/fr_img" />
+</androidx.constraintlayout.widget.ConstraintLayout>

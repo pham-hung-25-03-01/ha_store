@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="124dp"
+    android:paddingStart="15dp"
+    android:paddingEnd="15dp">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/slider_img"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/slider7"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/border_20" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MUA NGAY"
+        android:textSize="8dp"
+        android:paddingStart="6dp"
+        android:paddingEnd="4dp"
+        android:gravity="center_vertical"
+        android:textColor="@color/white"
+        android:layout_gravity="end|bottom"
+        android:drawableTint="@color/white"
+        android:drawableEnd="@drawable/ic_arrow_right"
+        android:background="@drawable/bg_btn_slider"/>
+</FrameLayout>
