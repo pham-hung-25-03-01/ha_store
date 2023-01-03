@@ -39,7 +39,7 @@ public class ChiTietDonDatHangDAO extends BaseDAO{
                         c.getInt(1),
                         c.getInt(2),
                         BigDecimal.valueOf(c.getLong(3)),
-                        c.getDouble(4),
+                        c.getFloat(4),
                         c.getInt(5)
                 ));
             }

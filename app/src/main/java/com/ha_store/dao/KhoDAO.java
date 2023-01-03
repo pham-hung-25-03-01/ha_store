@@ -2,8 +2,11 @@ package com.ha_store.dao;
 
 import android.database.Cursor;
 
+import com.ha_store.dto.KhoDTO;
 import com.ha_store.dto.KichThuocDTO;
+import com.ha_store.dto.SanPhamDTO;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,4 +29,37 @@ public class KhoDAO extends BaseDAO{
             return null;
         }
     }
+    public Integer LaySoLuongSanPham(Integer san_pham_id, Integer kich_thuoc_id){
+        try{
+            Integer so_luong = 0;
+            String query = "SELECT * FROM tb_kho WHERE san_pham_id = ? AND kich_thuoc_id = ?";
+            Cursor c = db.rawQuery(query, new String[]{String.valueOf(san_pham_id), String.valueOf(kich_thuoc_id)});
+            if (c.moveToNext()){
+                so_luong = c.getInt(2);
+            }
+            System.out.print(so_luong);
+            return so_luong;
+        }catch (Exception e){
+            e.printStackTrace();
+            return 0;
+        }
+    }
+    public KichThuocDTO LayThongTinKichThuocTheoId(Integer id){
+        try {
+            KichThuocDTO kt = null;
+            String query = "SELECT * FROM tb_kich_thuoc WHERE id = ? ";
+            Cursor c = db.rawQuery(query, new String[]{String.valueOf(id)});
+            if(c.moveToNext()){
+                kt = new KichThuocDTO(
+                        c.getInt(0),
+                        c.getString(1)
+                );
+            }
+            return kt;
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 }

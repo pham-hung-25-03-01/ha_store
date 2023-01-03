@@ -88,7 +88,7 @@ public class HomeActivity extends AppCompatActivity {
         setSPBanChay();
         setSPNoiBat();
         setSPTheoLoai();
-        setNotifyBottomNav();
+        //setNotifyBottomNav();
         java.util.Timer timer = new java.util.Timer();
         timer.scheduleAtFixedRate(new The_slide_timer(),4000,3000);
         timer.scheduleAtFixedRate(new The_searched_timer(),5000,3000);
@@ -144,7 +144,6 @@ public class HomeActivity extends AppCompatActivity {
                 bottom_nav.getMenu().findItem(R.id.nav_home).setChecked(true);
                 bottom_nav.getMenu().findItem(R.id.nav_home).setIcon(getDrawable(R.drawable.ic_home_heart));
                 bottom_nav.getMenu().findItem(R.id.nav_home).setTitle("Cho bạn");
-
             }
 
         });
@@ -191,7 +190,6 @@ public class HomeActivity extends AppCompatActivity {
         rc_sp_noi_bat.setHasFixedSize(true);
     }
 
-
     private void setSPBanChay() {
         ds_sp_ban_chay = sp_dao.LayDanhSachSanPhamMoi(4);
       //  Toast.makeText(this, ds_sp_ban_chay.get(0).get_ten_san_pham()+"du lieu", Toast.LENGTH_SHORT).show();
@@ -205,19 +203,11 @@ public class HomeActivity extends AppCompatActivity {
     private void setNotifyBottomNav() {
         BottomNavigationMenuView menu = (BottomNavigationMenuView)bottom_nav.getChildAt(0);
         BottomNavigationItemView item_nav_bn =(BottomNavigationItemView) menu.getChildAt(2);
-        BottomNavigationItemView item_nav_shopping =(BottomNavigationItemView) menu.getChildAt(1);
-
-        View notify_item_nav_shopping = LayoutInflater.from(this).inflate(R.layout.item_bage,menu,false);
-        cart_badge = notify_item_nav_shopping.findViewById(R.id.cart_badge);
-        cart_badge.setText("+20");
-
-
         View notify_item_nav_mess = LayoutInflater.from(this).inflate(R.layout.item_bage,menu,false);
         TextView cart_badge_shopping = notify_item_nav_mess.findViewById(R.id.cart_badge);
         cart_badge_shopping.setText("+90");
 
         item_nav_bn.addView(notify_item_nav_mess);
-        item_nav_shopping.addView(notify_item_nav_shopping);
 
     }
 
@@ -239,7 +229,6 @@ public class HomeActivity extends AppCompatActivity {
         sliderAdapter sliderAdapter = new sliderAdapter(this,photoList);
         v2_slider.setAdapter(sliderAdapter);
         slider_control.setViewPager(v2_slider);
-
     }
 
 

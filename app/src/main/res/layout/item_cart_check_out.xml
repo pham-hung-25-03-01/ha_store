@@ -38,7 +38,7 @@
             />
 
         <TextView
-            android:id="@+id/cart_item_cate"
+            android:id="@+id/cart_item_size"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_card_review"

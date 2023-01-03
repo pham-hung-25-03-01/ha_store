@@ -6,13 +6,129 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     tools:context=".bus.DetailActivity">
-
-    <include
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/top_nav"
-        layout="@layout/top_navbar_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/nav_top"
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            >
+            <LinearLayout
+                android:id="@+id/linearLayout_scan"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="8dp"
+                    android:clickable="true"
+                    android:background="@drawable/ic_baseline_arrow_back_ios_24"
+                    />
+
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_search"
+                android:gravity="center_vertical"
+                android:paddingStart="12dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/linearLayout_scan"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_photo"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/ic_search"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/btn_search_text"
+                    android:layout_width="155dp"
+                    android:layout_height="18dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="6dp"
+                    android:paddingStart="2dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/btn_photo"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/txt_searched"
+                        android:layout_width="156dp"
+                        android:layout_height="18dp"
+                        android:fontFamily="sans-serif-light"
+                        android:gravity="center_vertical"
+                        android:text="điện thoại realme q5"
+                        android:textColor="#8D909D"
+                        android:textSize="10sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout_wallet"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    android:background="@drawable/ic_baseline_share_24" />
+                <FrameLayout
+                    android:id="@+id/l_cart"
+                    android:paddingStart="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/btn_cart"
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:layout_marginEnd="8dp"
+                        android:clickable="true"
+                        android:background="@drawable/ic_cart"
+                        />
+
+                </FrameLayout>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/ic_baseline_more_horiz_24" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <ScrollView
         android:layout_width="match_parent"
@@ -34,11 +150,11 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_content"
                 >
-
-                <ViewFlipper
-                    android:id="@+id/viewFlipper"
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/v2_slider_img"
                     android:layout_width="match_parent"
-                    android:layout_height="392dp" />
+                    android:layout_height="wrap_content"
+                    android:minHeight="392dp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -200,11 +316,11 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/txt_size"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="12sp"
-                    android:text='"size 24" >'
+                    android:text='"Chọn size" >'
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -213,7 +329,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
                     android:orientation="horizontal"
-                    app:layout_constraintEnd_toEndOf="@+id/textView2"
+                    app:layout_constraintEnd_toEndOf="@+id/txt_size"
                     app:layout_constraintStart_toStartOf="@+id/textView3"
                     app:layout_constraintTop_toBottomOf="@+id/textView3">
 
@@ -224,10 +340,10 @@
                 </RadioGroup>
 
                 <TextView
-                    android:id="@+id/textView4"
+                    android:id="@+id/txt_so_luong"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Số lượng (148)"
+                    android:text="Số lượng"
                     app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
                     app:layout_constraintStart_toStartOf="@+id/radioGroup"
                     app:layout_constraintTop_toTopOf="@+id/linearLayout" />
@@ -237,7 +353,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    app:layout_constraintEnd_toEndOf="@+id/textView2"
+                    app:layout_constraintEnd_toEndOf="@+id/txt_size"
                     app:layout_constraintTop_toBottomOf="@+id/radioGroup">
 
                     <androidx.appcompat.widget.AppCompatButton
@@ -255,7 +371,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="8dp"
-                        android:text="13"
+                        android:text="1"
                         />
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/btn_plus"
@@ -498,33 +614,45 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:gravity="center_vertical"
+            android:gravity="end"
             android:paddingStart="15dp"
             android:paddingEnd="15dp"
             >
-            <TextView
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:drawableTop="@drawable/ic_baseline_message_24"
-                android:gravity="center"
-                android:text="Chat"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                android:layout_weight="1" />
+                android:layout_height="match_parent"
+                android:layout_marginStart="0dp"
+                android:layout_toStartOf="@+id/btn_dat_hang">
+
+                <TextView
+                    android:id="@+id/textView20"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tổng cộng:"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    />
+
+                <TextView
+                    android:id="@+id/txt_tong_gia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="109.370 đ"
+                    android:textColor="#EF4B4B"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView20"
+                    app:layout_constraintStart_toEndOf="@+id/textView20"
+                    app:layout_constraintTop_toTopOf="@+id/textView20" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
 
             <androidx.appcompat.widget.AppCompatButton
-                android:layout_width="wrap_content"
-                android:layout_height="44dp"
-                android:background="@drawable/bg_btn_buy_now"
-                android:minWidth="124dp"
-                android:text="Mua ngay"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:layout_marginTop="6dp"
-                android:layout_marginBottom="6dp"
-                android:textSize="10sp" />
-
-            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_them_gio_hang"
                 android:layout_width="wrap_content"
                 android:layout_height="44dp"
                 android:layout_marginStart="10dp"

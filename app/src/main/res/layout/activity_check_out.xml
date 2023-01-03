@@ -101,6 +101,7 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/txt_sdt"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_toEndOf="@+id/txt_ho_ten"
@@ -109,6 +110,7 @@
                             android:textSize="12sp" />
                     </RelativeLayout>
                     <TextView
+                        android:id="@+id/txt_dia_chi"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
@@ -135,12 +137,11 @@
                         />
                 </LinearLayout>
             </RelativeLayout>
-            <include layout="@layout/item_cart_check_out"/>
-            <include layout="@layout/item_cart_check_out"/>
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rc_check_out"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 />
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -234,27 +235,40 @@
                     app:layout_constraintEnd_toEndOf="@+id/relativeLayout2"
                     app:layout_constraintTop_toTopOf="@+id/textView22" />
 
+                <EditText
+                    android:id="@+id/txt_ma_km"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:height="50dp"
+                    android:paddingStart="10dp"
+                    android:background="@drawable/bg_card_review"
+                    android:hint="Nhập mã khuyến mãi"
+                    android:outlineProvider="none"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="@+id/textView24"
+                    app:layout_constraintStart_toStartOf="@+id/textView22"
+                    app:layout_constraintTop_toBottomOf="@+id/textView22" />
                 <TextView
-                    android:id="@+id/textView23"
+                    android:id="@+id/txt_so_luong"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="2 item, Subtotal: "
                     android:textSize="10sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/textView25"
-                    app:layout_constraintTop_toTopOf="@+id/textView25" />
+                    app:layout_constraintEnd_toStartOf="@+id/txt_tong_tien_1"
+                    app:layout_constraintTop_toTopOf="@+id/txt_tong_tien_1" />
 
                 <TextView
-                    android:id="@+id/textView25"
+                    android:id="@+id/txt_tong_tien_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="109.370 đ"
                     android:textColor="@color/black"
-                    android:layout_marginTop="15dp"
                     android:textSize="14sp"
                     android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="@+id/textView24"
-                    app:layout_constraintTop_toBottomOf="@+id/textView24" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_ma_km" />
             </androidx.constraintlayout.widget.ConstraintLayout>
             <View
                 android:layout_width="match_parent"
@@ -304,6 +318,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView26">
 
                     <RadioButton
+                        android:id="@+id/btn_momo"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -314,21 +329,23 @@
                         android:button="@android:color/transparent"
                         android:drawableStart="@drawable/ic_payment3"
                         android:gravity="center"
+                        android:clickable="true"
                         >
 
                     </RadioButton>
 
-                    <androidx.appcompat.widget.AppCompatRadioButton
+                    <RadioButton
+                        android:id="@+id/btn_truc_tiep"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:padding="4dp"
+                        android:clickable="true"
                         android:background="@drawable/radio_selector"
                         android:button="@android:color/transparent"
                         android:drawableStart="@drawable/ic_payment1"
                         android:gravity="center"
                         android:text="Trực tiếp" />
-
                 </RadioGroup>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -368,7 +385,7 @@
                     />
 
                 <TextView
-                    android:id="@+id/textView21"
+                    android:id="@+id/txt_tong_tien_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="109.370 đ"

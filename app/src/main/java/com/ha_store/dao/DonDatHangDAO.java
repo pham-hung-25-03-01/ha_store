@@ -2,7 +2,9 @@ package com.ha_store.dao;
 
 import android.database.Cursor;
 
+import com.ha_store.dto.ChiTietThanhToanDTO;
 import com.ha_store.dto.DonDatHangDTO;
+import com.ha_store.dto.HoaDonDTO;
 
 import java.math.BigDecimal;
 
@@ -40,7 +42,6 @@ public class DonDatHangDAO extends BaseDAO{
             return false;
         }
     }
-
     public DonDatHangDTO LayThongTinDonDatHang(Integer don_dat_hang_id){
         try{
             DonDatHangDTO ddh = null;
@@ -65,6 +66,42 @@ public class DonDatHangDAO extends BaseDAO{
         }catch (Exception e){
             e.printStackTrace();
             return null;
+        }
+    }
+    public DonDatHangDTO LayDonDatHangMoi(){
+        try{
+            DonDatHangDTO ddh = null;
+            String query = "SELECT * FROM tb_don_dat_hang ORDER BY id DESC LIMIT 1";
+            Cursor c = db.rawQuery(query,null);
+            if (c.moveToNext()){
+                ddh = new DonDatHangDTO(
+                        c.getInt(0),
+                        c.getInt(1),
+                        c.getString(2),
+                        BigDecimal.valueOf(c.getLong(3)),
+                        c.getString(4),
+                        c.getString(5),
+                        c.getString(6),
+                        c.getString(7),
+                        BigDecimal.valueOf(c.getLong(8)),
+                        c.getInt(9),
+                        BigDecimal.valueOf(c.getLong(10))
+                        );
+            }
+            return ddh;
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+    public boolean ThemCTTT(ChiTietThanhToanDTO cttt){
+        try{
+            String query = "INSERT INTO tb_chi_tiet_thanh_toan(hinh_thuc_thanh_toan, hoa_don_id, don_dat_hang_id, so_tien_da_thanh_toan) VALUES (?,?,?,?)";
+            db.execSQL(query,new Object[]{cttt.getHinh_thuc_thanh_toan_id(),cttt.getHoa_don_id(),cttt.getDon_dat_hang_id(),cttt.getSo_tien_da_thanh_toan()});
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
         }
     }
 }

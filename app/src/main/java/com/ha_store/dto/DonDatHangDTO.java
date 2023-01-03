@@ -30,6 +30,19 @@ public class DonDatHangDTO extends BaseDTO{
 		this.ngay_khoi_tao = ngay_khoi_tao;
 	}
 
+	public DonDatHangDTO(Integer khach_hang_id, String khuyen_mai_id, BigDecimal ngay_giao, String so_nha, String phuong_xa, String quan_huyen, String tinh_thanh, BigDecimal tong_tien, Integer trang_thai, BigDecimal ngay_khoi_tao) {
+		this.khach_hang_id = khach_hang_id;
+		this.khuyen_mai_id = khuyen_mai_id;
+		this.ngay_giao = ngay_giao;
+		this.so_nha = so_nha;
+		this.phuong_xa = phuong_xa;
+		this.quan_huyen = quan_huyen;
+		this.tinh_thanh = tinh_thanh;
+		this.tong_tien = tong_tien;
+		this.trang_thai = trang_thai;
+		this.ngay_khoi_tao = ngay_khoi_tao;
+	}
+
 	public Integer getId() {
 		return id;
 	}
