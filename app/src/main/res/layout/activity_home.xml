@@ -195,7 +195,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="Flash Sale"
+                        android:text="Bán chạy"
                         android:textStyle="bold"
                         android:textColor="@color/black"
                         android:textSize="14dp"
@@ -211,16 +211,10 @@
                         android:textSize="14dp"
                         />
                 </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rc_sp_ban_chay"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-
-                </LinearLayout>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -241,10 +235,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="BEST SELLERS"
+                        android:text="Nổi bật"
                         android:textStyle="bold"
                         android:textColor="@color/black"
-                        android:textSize="14sp"
+                        android:textSize="13sp"
                         android:layout_weight="1"
                         android:letterSpacing="0.1"
                         />
@@ -254,186 +248,13 @@
                         android:layout_weight="1"
                         android:textAlignment="textEnd"
                         android:text="Xem thêm ngay >"
-                        android:textSize="14sp"
+                        android:textSize="13sp"
                         />
                 </LinearLayout>
-                <LinearLayout
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rc_sp_noi_bat"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:layout_marginEnd="10dp"
-                        >
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-                            <com.google.android.material.imageview.ShapeableImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="110dp"
-                                android:adjustViewBounds="true"
-                                android:scaleType="centerCrop"
-                                android:background="#E0ECE0"
-                                android:src="@drawable/bg_splash_1"
-                                app:shapeAppearanceOverlay="@style/border_20" />
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:background="#8CFEA8A8"
-                                android:text="img 1"/>
-                        </FrameLayout>
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="TOP"
-                            android:textAlignment="center"
-                            android:textStyle="bold"
-                            android:letterSpacing=".1"
-                            android:textSize="14sp"
-                            android:paddingStart="4dp"
-                            android:paddingTop="6dp"
-                            android:textColor="#B48C4A"
-                            />
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="8.7kMua lại"
-                            android:textSize="12sp"
-                            android:textColor="#B48C4A"
-                            android:textAlignment="center"
-                            android:paddingStart="4dp"
-                            />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:backgroundTint="#E3B1B1"
-                            android:textAlignment="center"
-                            android:text="Quần short thể th..."
-                            android:textSize="9sp"
-                            android:paddingStart="8dp"
-                            />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:layout_marginEnd="10dp"
-                        >
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-                            <com.google.android.material.imageview.ShapeableImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="110dp"
-                                android:adjustViewBounds="true"
-                                android:scaleType="centerCrop"
-                                android:background="#E0ECE0"
-                                android:src="@drawable/bg_splash_1"
-                                app:shapeAppearanceOverlay="@style/border_20" />
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:background="#8CFEA8A8"
-                                android:text="img 1"/>
-                        </FrameLayout>
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="TOP"
-                            android:textAlignment="center"
-                            android:textStyle="bold"
-                            android:letterSpacing=".1"
-                            android:textSize="14sp"
-                            android:paddingStart="4dp"
-                            android:paddingTop="6dp"
-                            android:textColor="#B48C4A"
-                            />
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="8.7kMua lại"
-                            android:textSize="12sp"
-                            android:textColor="#B48C4A"
-                            android:textAlignment="center"
-                            android:paddingStart="4dp"
-                            />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:backgroundTint="#E3B1B1"
-                            android:textAlignment="center"
-                            android:text="Quần short thể th..."
-                            android:textSize="9sp"
-                            android:paddingStart="8dp"
-                            />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        >
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-                            <com.google.android.material.imageview.ShapeableImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="110dp"
-                                android:adjustViewBounds="true"
-                                android:scaleType="centerCrop"
-                                android:background="#E0ECE0"
-                                android:src="@drawable/bg_splash_1"
-                                app:shapeAppearanceOverlay="@style/border_20" />
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:background="#8CFEA8A8"
-                                android:text="img 1"/>
-                        </FrameLayout>
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="TOP"
-                            android:textAlignment="center"
-                            android:textStyle="bold"
-                            android:letterSpacing=".1"
-                            android:textSize="14sp"
-                            android:paddingStart="4dp"
-                            android:paddingTop="6dp"
-                            android:textColor="#B48C4A"
-                            />
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="8.7kMua lại"
-                            android:textSize="12sp"
-                            android:textColor="#B48C4A"
-                            android:textAlignment="center"
-                            android:paddingStart="4dp"
-                            />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:backgroundTint="#E3B1B1"
-                            android:textAlignment="center"
-                            android:text="Quần short thể th..."
-                            android:textSize="9sp"
-                            android:paddingStart="8dp"
-                            />
-                    </LinearLayout>
-                </LinearLayout>
+                    android:layout_height="wrap_content"/>
             </LinearLayout>
             <include layout="@layout/component_cate"/>
 
@@ -485,7 +306,7 @@
                 android:id="@+id/vp_product_option"
                 android:layout_width="match_parent"
                 android:padding="15dp"
-                android:layout_height="500dp"/>
+                android:layout_height="wrap_content"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="wrap_content"

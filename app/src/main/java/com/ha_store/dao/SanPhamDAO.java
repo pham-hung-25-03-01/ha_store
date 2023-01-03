@@ -3,6 +3,7 @@ package com.ha_store.dao;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.ha_store.dto.AnhSanPhamDTO;
 import com.ha_store.dto.SanPhamDTO;
 import com.ha_store.sql_db_helper.DBHelper;
 
@@ -173,6 +174,24 @@ public class SanPhamDAO extends BaseDAO{
                 ));
             }
             return ds_san_pham;
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+    public List<AnhSanPhamDTO> LayDanhSachAnhSanPham(Integer id){
+        try {
+            List<AnhSanPhamDTO> ds_anh_san_pham = new ArrayList<AnhSanPhamDTO>();
+            String query = "SELECT * FROM tb_anh_san_pham WHERE san_pham_id = ? ORDER BY id DESC";
+            Cursor c = db.rawQuery(query, new String[]{String.valueOf(id)});
+            while(c.moveToNext()){
+                ds_anh_san_pham.add(new AnhSanPhamDTO(
+                        c.getInt(0),
+                        c.getInt(1),
+                        c.getString(2)
+                ));
+            }
+            return ds_anh_san_pham;
         }catch (Exception e){
             e.printStackTrace();
             return null;
