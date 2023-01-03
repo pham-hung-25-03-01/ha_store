@@ -4,27 +4,28 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
-import android.widget.ImageView;
 import android.widget.RadioButton;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.ha_store.R;
+import com.ha_store.bus.DetailActivity;
+import com.ha_store.dao.KhoDAO;
 import com.ha_store.dto.KichThuocDTO;
-import com.ha_store.dto.Option;
 
 import java.util.List;
 
 public class ProductSizeAdapter extends RecyclerView.Adapter<ProductSizeAdapter.ViewHolder> {
     List<KichThuocDTO> ds_chon_size;
+    KhoDAO kho_dao;
+    int sp_id;
     private int selectedPosition = -1;
 
-    public ProductSizeAdapter(List<KichThuocDTO> ds_chon_size) {
+    public ProductSizeAdapter(int id, List<KichThuocDTO> ds_chon_size) {
         this.ds_chon_size = ds_chon_size;
+        sp_id = id;
+        kho_dao = new KhoDAO();
     }
 
     @NonNull
@@ -60,6 +61,11 @@ public class ProductSizeAdapter extends RecyclerView.Adapter<ProductSizeAdapter.
                 notifyItemChanged(selectedPosition);
             selectedPosition = holder.getAdapterPosition();
             notifyItemChanged(selectedPosition);
+            int so_luong = kho_dao.LaySoLuongSanPham(sp_id, kt.getId());
+            DetailActivity.txt_so_luong.setText("Số lượng ("+String.valueOf(so_luong)+")");
+            DetailActivity.txt_size.setText(kt.getTen_kich_thuoc().toString()+" >");
+            DetailActivity.so_luong = so_luong;
+            DetailActivity.id_kich_thuoc = kt.getId();
         });
     }
 
@@ -75,6 +81,7 @@ public class ProductSizeAdapter extends RecyclerView.Adapter<ProductSizeAdapter.
             super(itemView);
             product_size = itemView.findViewById(R.id.product_size);
             context = itemView.getContext();
+
         }
     }
 }

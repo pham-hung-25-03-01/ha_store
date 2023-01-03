@@ -2,8 +2,11 @@ package com.ha_store.dao;
 
 import android.database.Cursor;
 
+import com.ha_store.dto.KhoDTO;
 import com.ha_store.dto.KichThuocDTO;
+import com.ha_store.dto.SanPhamDTO;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,4 +43,22 @@ public class KhoDAO extends BaseDAO{
             return 0;
         }
     }
+    public KichThuocDTO LayThongTinKichThuocTheoId(Integer id){
+        try {
+            KichThuocDTO kt = null;
+            String query = "SELECT * FROM tb_kich_thuoc WHERE id = ? ";
+            Cursor c = db.rawQuery(query, new String[]{String.valueOf(id)});
+            if(c.moveToNext()){
+                kt = new KichThuocDTO(
+                        c.getInt(0),
+                        c.getString(1)
+                );
+            }
+            return kt;
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 }

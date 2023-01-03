@@ -1,6 +1,8 @@
 package com.ha_store.dto;
 
-public class AnhSanPhamDTO extends BaseDTO{
+import java.io.Serializable;
+
+public class AnhSanPhamDTO extends BaseDTO implements Serializable {
     private Integer id;
     private Integer san_pham_id;
     private String anh_san_pham_url;

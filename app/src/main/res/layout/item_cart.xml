@@ -33,11 +33,10 @@
             android:minHeight="40dp"
             android:text="SET BO DO BA LO THOI TRANG SAKURA MS123"
             android:textColor="@color/black"
-            android:textSize="16dp"
-            />
+            android:textSize="16dp" />
 
         <TextView
-            android:id="@+id/cart_item_cate"
+            android:id="@+id/cart_item_size"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_card_review"

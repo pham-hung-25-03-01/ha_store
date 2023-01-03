@@ -9,7 +9,7 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
-    <string name="kiem_tra_don_hang"><![CDATA[>Đơn hàng có thể được giao Ngoài giờ làm việc hoặc cuối tuần để đến tay bạc sớm nhất có thể. Nếu được hãy chọn giao hàng tại địa chỉ nhà riêng để đảm bảo giao thành công.]]></string>
+    <string name="kiem_tra_don_hang">Đơn hàng có thể được giao Ngoài giờ làm việc hoặc cuối tuần để đến tay bạc sớm nhất có thể. Nếu được hãy chọn giao hàng tại địa chỉ nhà riêng để đảm bảo giao thành công.</string>
     <string name="dia_chi">Đường 79/614/63, Phước Long B, Quận 9, Hồ Chí Minh</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

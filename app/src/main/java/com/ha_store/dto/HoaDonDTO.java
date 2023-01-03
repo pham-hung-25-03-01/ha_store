@@ -16,6 +16,12 @@ public class HoaDonDTO extends BaseDTO{
         this.ngay_khoi_tao = ngay_khoi_tao;
     }
 
+    public HoaDonDTO(Integer quan_tri_vien_id, Integer trang_thai, BigDecimal ngay_khoi_tao) {
+        this.quan_tri_vien_id = quan_tri_vien_id;
+        this.trang_thai = trang_thai;
+        this.ngay_khoi_tao = ngay_khoi_tao;
+    }
+
     public Integer getId() {
         return id;
     }
