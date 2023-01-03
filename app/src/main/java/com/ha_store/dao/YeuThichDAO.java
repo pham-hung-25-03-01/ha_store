@@ -3,10 +3,13 @@ package com.ha_store.dao;
 import android.database.Cursor;
 
 import com.ha_store.dto.BinhLuanDTO;
+import com.ha_store.dto.SanPhamDTO;
 import com.ha_store.dto.XepHangDTO;
 import com.ha_store.dto.YeuThichDTO;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class YeuThichDAO extends BaseDAO{
@@ -27,6 +30,20 @@ public class YeuThichDAO extends BaseDAO{
         }catch (Exception e){
             e.printStackTrace();
             return null;
+        }
+    }
+    public Integer LaySoLuongYeuThichTheoKhachHangId(Integer khach_hang_id){
+        try{
+            Integer so_luong = 0;
+            String query = "SELECT COUNT(*) FROM tb_yeu_thich WHERE khach_hang_id = ?";
+            Cursor c = db.rawQuery(query, new String[]{String.valueOf(khach_hang_id)});
+            if (c.moveToNext()){
+                so_luong = c.getInt(0);
+            }
+            return so_luong;
+        }catch (Exception e){
+            e.printStackTrace();
+            return 0;
         }
     }
     public Boolean ThemYeuThich(YeuThichDTO yt){
@@ -51,6 +68,34 @@ public class YeuThichDAO extends BaseDAO{
         }catch (Exception e){
             e.printStackTrace();
             return false;
+        }
+    }
+    public List<SanPhamDTO> LayDanhSachSanPhamYeuThichTheoKhachHangId(Integer khach_hang_id){
+        try{
+            List<SanPhamDTO> ds_sp = new ArrayList<SanPhamDTO>();
+            String query = "SELECT * FROM tb_san_pham WHERE id IN (SELECT san_pham_id FROM tb_yeu_thich WHERE khach_hang_id = ?)";
+            Cursor c = db.rawQuery(query, new String[]{String.valueOf(khach_hang_id)});
+            while (c.moveToNext()) {
+                ds_sp.add(new SanPhamDTO(
+                        c.getInt(0),
+                        c.getInt(1),
+                        c.getInt(2),
+                        c.getString(3),
+                        c.getString(4),
+                        c.getString(5),
+                        c.getString(6),
+                        c.getInt(7),
+                        BigDecimal.valueOf(c.getLong(8)),
+                        BigDecimal.valueOf(c.getLong(9)),
+                        c.getFloat(10),
+                        c.getFloat(11),
+                        c.getInt(12)
+                ));
+            }
+            return ds_sp;
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
         }
     }
 }

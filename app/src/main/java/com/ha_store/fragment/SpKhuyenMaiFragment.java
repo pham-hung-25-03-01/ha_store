@@ -41,7 +41,7 @@ public class SpKhuyenMaiFragment extends Fragment {
         rc_sp_khuyen_mai = view.findViewById(R.id.rc_sp_khuyen_mai);
         ds_sp_khuyen_mai = new ArrayList<>();
         sp_dao =new SanPhamDAO();
-        ds_sp_khuyen_mai = sp_dao.LayDanhSachSanPhamMoi(null);
+        ds_sp_khuyen_mai = sp_dao.LayDanhSachSanPhamGiamGia(null);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(view.getContext(),2,GridLayoutManager.VERTICAL, false);
         SPKhuyenMaiAdapter spKhuyenMaiAdapter = new SPKhuyenMaiAdapter(ds_sp_khuyen_mai);
         rc_sp_khuyen_mai.setAdapter(spKhuyenMaiAdapter);

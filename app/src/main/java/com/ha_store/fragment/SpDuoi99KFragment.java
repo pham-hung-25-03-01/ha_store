@@ -40,8 +40,8 @@ public class SpDuoi99KFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         rc_sp_duoi_99k = view.findViewById(R.id.rc_sp_duoi_99k);
         ds_sp_duoi_99k = new ArrayList<>();
-        sp_dao =new SanPhamDAO();
-        ds_sp_duoi_99k = sp_dao.LayDanhSachSanPhamMoi(null);
+        sp_dao = new SanPhamDAO();
+        ds_sp_duoi_99k = sp_dao.LayDanhSachSanPhamDuoi99k(null);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(view.getContext(),2,GridLayoutManager.VERTICAL, false);
         SPDuoi99KAdapter spDuoi99KAdapter = new SPDuoi99KAdapter(ds_sp_duoi_99k);
         rc_sp_duoi_99k.setAdapter(spDuoi99KAdapter);

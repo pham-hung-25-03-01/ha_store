@@ -196,6 +196,19 @@ public class KhachHangDAO extends BaseDAO{
             return false;
         }
     }
+    public Boolean KiemTraSoDienThoaiTonTai(String so_dien_thoai){
+        try{
+            String query = "SELECT COUNT(*) FROM tb_khach_hang WHERE so_dien_thoai = ?";
+            Cursor c = db.rawQuery(query, new String[]{so_dien_thoai});
+            if(c.moveToNext() && c.getInt(0) > 0){
+                return true;
+            }
+            return false;
+        }catch (Exception e){
+            e.printStackTrace();
+            return true;
+        }
+    }
 
     private boolean is_valid(String clearTextPassword, String hashedPass) {
         // returns true if password matches hash

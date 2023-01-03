@@ -18,7 +18,7 @@
         android:paddingBottom="12dp"
         android:paddingStart="15dp"
         android:paddingEnd="15dp"
-        android:visibility="visible"
+        android:visibility="gone"
         android:background="@drawable/bg_gadient_1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -137,6 +137,7 @@
                 android:padding="10dp"
                 >
                 <LinearLayout
+                    android:id="@+id/btn_yeu_thich"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -146,6 +147,7 @@
                     android:padding="10dp"
                     >
                     <TextView
+                        android:id="@+id/txt_yeu_thich"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="6"
@@ -161,6 +163,7 @@
                         />
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/btn_ma_giam_gia"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -169,9 +172,10 @@
                     android:padding="10dp"
                     >
                     <TextView
+                        android:id="@+id/txt_ma_giam_gia"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="2"
+                        android:text="0"
                         android:textSize="12sp"
                         android:textColor="@color/black"
                         />
@@ -179,30 +183,7 @@
                         android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:textAlignment="center"
-                        android:text="Gian hàng theo dõi"
-                        android:textSize="10sp"
-                        />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:padding="10dp"
-                    >
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="226"
-                        android:textSize="12sp"
-                        android:textColor="@color/black"
-                        />
-                    <TextView
-                        android:layout_width="80dp"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:text="Đã xem    gần đây"
+                        android:text="Mã giảm giá"
                         android:textSize="10sp"
                         />
                 </LinearLayout>
@@ -225,7 +206,30 @@
                         android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:textAlignment="center"
-                        android:text="Mã giảm giá"
+                        android:text="Gian hàng theo dõi"
+                        android:textSize="10sp"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textSize="12sp"
+                        android:textColor="@color/black"
+                        />
+                    <TextView
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:text="Đã xem gần đây"
                         android:textSize="10sp"
                         />
                 </LinearLayout>
@@ -249,7 +253,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/btn_tat_ca_don_hang"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="10sp"
@@ -269,6 +273,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView3">
 
                     <LinearLayout
+                        android:id="@+id/btn_cho_duyet"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -297,46 +302,14 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Chờ Th.Toán"
+                            android:text="Chờ duyệt"
                             android:textAlignment="center"
                             android:textSize="9sp" />
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:clickable="true"
-                        android:background="?android:attr/selectableItemBackground"
-                        android:padding="10dp">
-                        <FrameLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-
-                            <ImageView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:src="@drawable/ic_box"/>
-
-                            <include
-                                android:layout_gravity="end"
-                                layout="@layout/cart_bage"
-                                android:layout_height="wrap_content"
-                                android:layout_width="wrap_content" />
-                        </FrameLayout>
-
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Chờ vận chuyển"
-                            android:textAlignment="center"
-                            android:textSize="9sp" />
-                    </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/btn_cho_giao_hang"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -370,8 +343,8 @@
                             android:textAlignment="center"
                             android:textSize="9sp" />
                     </LinearLayout>
-
                     <LinearLayout
+                        android:id="@+id/btn_da_nhan_hang"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -387,7 +360,7 @@
                             <ImageView
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
-                                android:src="@drawable/ic_rating"/>
+                                android:src="@drawable/ic_box"/>
 
                             <include
                                 android:layout_gravity="end"
@@ -397,15 +370,15 @@
                         </FrameLayout>
 
 
-
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Chưa đánh giá"
+                            android:text="Đã nhận hàng"
                             android:textAlignment="center"
                             android:textSize="9sp" />
                     </LinearLayout>
                     <LinearLayout
+                        android:id="@+id/btn_don_da_huy"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"

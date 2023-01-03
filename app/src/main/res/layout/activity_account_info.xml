@@ -100,7 +100,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
                     android:padding="15dp"
                     android:text="7685594903"
                     android:textSize="13sp" />
@@ -163,7 +162,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
                     android:padding="15dp"
                     android:text="ky******@gmail.com"
                     android:textSize="13sp" />
@@ -211,7 +209,7 @@
                     android:layout_alignParentEnd="true"
                     android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
                     android:padding="15dp"
-                    android:text="2001-01-01"
+                    android:text="11/01/2001"
                     android:textSize="13sp" />
             </RelativeLayout>
             <RelativeLayout

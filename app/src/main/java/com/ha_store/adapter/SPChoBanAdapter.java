@@ -98,8 +98,6 @@ public class SPChoBanAdapter extends RecyclerView.Adapter<SPChoBanAdapter.ViewHo
             product_price = itemView.findViewById(R.id.product_price);
             product_discount = itemView.findViewById(R.id.product_discount);
             product_evaluate = itemView.findViewById(R.id.product_evaluate);
-
-
         }
     }
 }

@@ -123,6 +123,41 @@ public class SanPhamDAO extends BaseDAO{
             return null;
         }
     }
+    public List<SanPhamDTO> LayDanhSachSanPhamDuoi99k(Integer limit){
+        try {
+            List<SanPhamDTO> ds_san_pham = new ArrayList<>();
+            String query = "SELECT * FROM tb_san_pham WHERE gia_ban * (1 - phan_tram_khuyen_mai) <= 99000 ORDER BY gia_ban * (1 - phan_tram_khuyen_mai) ASC";
+            Cursor c;
+            if(limit != null){
+                query += " LIMIT ?";
+                c = db.rawQuery(query, new String[]{String.valueOf(limit)});
+            }
+            else{
+                c = db.rawQuery(query, null);
+            }
+            while(c.moveToNext()){
+                ds_san_pham.add(new SanPhamDTO(
+                        c.getInt(0),
+                        c.getInt(1),
+                        c.getInt(2),
+                        c.getString(3),
+                        c.getString(4),
+                        c.getString(5),
+                        c.getString(6),
+                        c.getInt(7),
+                        BigDecimal.valueOf(c.getLong(8)),
+                        BigDecimal.valueOf(c.getLong(9)),
+                        c.getFloat(10),
+                        c.getFloat(11),
+                        c.getInt(12)
+                ));
+            }
+            return ds_san_pham;
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
     public SanPhamDTO LayThongTinSanPhamTheoId(Integer id){
         try {
             SanPhamDTO san_pham = null;
@@ -192,6 +227,41 @@ public class SanPhamDAO extends BaseDAO{
                 ));
             }
             return ds_anh_san_pham;
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+    public List<SanPhamDTO> LayDanhSachSanPhamTheoLoai(Integer loai_san_pham_id){
+        try {
+            List<SanPhamDTO> ds_san_pham = new ArrayList<>();
+            String query = "SELECT * FROM tb_san_pham";
+            Cursor c;
+            if(loai_san_pham_id == null){
+                c = db.rawQuery(query, null);
+            }
+            else{
+                query += " WHERE loai_san_pham_id = ?";
+                c = db.rawQuery(query, new String[]{String.valueOf(loai_san_pham_id)});
+            }
+            while(c.moveToNext()){
+                ds_san_pham.add(new SanPhamDTO(
+                        c.getInt(0),
+                        c.getInt(1),
+                        c.getInt(2),
+                        c.getString(3),
+                        c.getString(4),
+                        c.getString(5),
+                        c.getString(6),
+                        c.getInt(7),
+                        BigDecimal.valueOf(c.getLong(8)),
+                        BigDecimal.valueOf(c.getLong(9)),
+                        c.getFloat(10),
+                        c.getFloat(11),
+                        c.getInt(12)
+                ));
+            }
+            return ds_san_pham;
         }catch (Exception e){
             e.printStackTrace();
             return null;

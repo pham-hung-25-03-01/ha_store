@@ -101,7 +101,6 @@
  (
  id INTEGER NOT NULL,
  quan_tri_vien_id INTEGER NOT NULL,
- tong_tien_da_thanh_toan NUMERIC NULL,
  trang_thai INTEGER NULL,
  ngay_khoi_tao NUMERIC NULL,
  PRIMARY KEY (id),

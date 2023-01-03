@@ -12,6 +12,7 @@ import com.ha_store.R;
 import com.ha_store.dao.KhachHangDAO;
 
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 
 public class SettingActivity extends AppCompatActivity {
     KhachHangDAO khachHangDAO;
@@ -55,7 +56,8 @@ public class SettingActivity extends AppCompatActivity {
             }
         });
         BigDecimal so_du_vi = khachHangDAO.LayThongTinKhachHangTheoId(KhachHangDAO.khach_hang_hien_tai.get_id()).get_so_du_vi();
-        txt_wallet.setText(String.valueOf(so_du_vi) + " VND");
+        DecimalFormat format = new DecimalFormat("###,###,###");
+        txt_wallet.setText(format.format(so_du_vi).toString() + "đ");
     }
 
     private void Init() {

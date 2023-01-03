@@ -7,10 +7,10 @@ public class ChiTietDonDatHangDTO extends BaseDTO{
     private Integer kich_thuoc_id;
     private Integer don_dat_hang_id;
     private BigDecimal gia_ban;
-    private Double phan_tram_khuyen_mai;
+    private Float phan_tram_khuyen_mai;
     private Integer so_luong;
 
-    public ChiTietDonDatHangDTO(Integer san_pham_id, Integer kich_thuoc_id, Integer don_dat_hang_id, BigDecimal gia_ban, Double phan_tram_khuyen_mai, Integer so_luong) {
+    public ChiTietDonDatHangDTO(Integer san_pham_id, Integer kich_thuoc_id, Integer don_dat_hang_id, BigDecimal gia_ban, Float phan_tram_khuyen_mai, Integer so_luong) {
         this.san_pham_id = san_pham_id;
         this.kich_thuoc_id = kich_thuoc_id;
         this.don_dat_hang_id = don_dat_hang_id;
@@ -51,11 +51,11 @@ public class ChiTietDonDatHangDTO extends BaseDTO{
         this.gia_ban = gia_ban;
     }
 
-    public Double getPhan_tram_khuyen_mai() {
+    public Float getPhan_tram_khuyen_mai() {
         return phan_tram_khuyen_mai;
     }
 
-    public void setPhan_tram_khuyen_mai(Double phan_tram_khuyen_mai) {
+    public void setPhan_tram_khuyen_mai(Float phan_tram_khuyen_mai) {
         this.phan_tram_khuyen_mai = phan_tram_khuyen_mai;
     }
 

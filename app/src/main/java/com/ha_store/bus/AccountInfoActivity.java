@@ -145,7 +145,13 @@ public class AccountInfoActivity extends AppCompatActivity {
                         }
                         case 3:{
                             if(input.matches("^0\\d{9}$")){
-                                kh.set_so_dien_thoai(input);
+                                if(!input.equals(kh.get_so_dien_thoai()) && khachHangDAO.KiemTraSoDienThoaiTonTai(input)){
+                                    Toast.makeText(getApplicationContext(),"Số điện thoại đã tồn tại",Toast.LENGTH_LONG).show();
+                                    return;
+                                }
+                                else{
+                                    kh.set_so_dien_thoai(input);
+                                }
                             }
                             else{
                                 Toast.makeText(getApplicationContext(),"Số điện thoại sai định dạng",Toast.LENGTH_LONG).show();

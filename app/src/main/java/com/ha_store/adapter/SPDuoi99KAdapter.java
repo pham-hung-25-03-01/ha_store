@@ -10,19 +10,26 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.ha_store.R;
 import com.ha_store.bus.DetailActivity;
+import com.ha_store.dao.SanPhamDAO;
+import com.ha_store.dto.AnhSanPhamDTO;
 import com.ha_store.dto.SanPhamDTO;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 public class SPDuoi99KAdapter extends RecyclerView.Adapter<SPDuoi99KAdapter.ViewHolder> {
     List<SanPhamDTO> ds_sp_duoi_99k;
+    List<AnhSanPhamDTO> list_anh;
+    SanPhamDAO sp_dao;
 
     public SPDuoi99KAdapter(List<SanPhamDTO> ds_sp_duoi_99k) {
         this.ds_sp_duoi_99k = ds_sp_duoi_99k;
+        sp_dao = new SanPhamDAO();
     }
 
     @NonNull
@@ -39,10 +46,15 @@ public class SPDuoi99KAdapter extends RecyclerView.Adapter<SPDuoi99KAdapter.View
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         SanPhamDTO sp = ds_sp_duoi_99k.get(position);
         DecimalFormat format = new DecimalFormat("###,###,###");
+        list_anh = new ArrayList<>();
 
-        //List<AnhSanPhamDTO> list_anh  = new ArrayList<>();
+        list_anh = sp_dao.LayDanhSachAnhSanPham(sp.get_id());
 
-        //Glide.with(holder.context).load(sp.).placeholder(R.drawable.ic_launcher_background).into(holder.option_img);
+        if(list_anh.size()>0){
+            Glide.with(holder.context).load(list_anh.get(0).getAnh_san_pham_url().toString()).placeholder(R.drawable.ic_launcher_background).into(holder.product_img);
+        }else{
+            Glide.with(holder.context).load("https://thumbs.dreamstime.com/b/icono-de-color-rgb-marcador-posici%C3%B3n-galer%C3%ADa-im%C3%A1genes-miniatura-la-foto-%C3%A1lbum-disponible-medios-digitales-archivo-multimedia-187369540.jpg").placeholder(R.drawable.ic_launcher_background).into(holder.product_img);
+        }
         String ten_sp = sp.get_ten_san_pham();
         if(ten_sp.length()>50){
             holder.product_name.setText(ten_sp.substring(0,50)+"...");

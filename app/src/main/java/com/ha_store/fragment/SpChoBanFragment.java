@@ -41,7 +41,7 @@ public class SpChoBanFragment extends Fragment {
         rc_sp_cho_ban = view.findViewById(R.id.rc_sp_cho_ban);
         ds_sp_cho_ban = new ArrayList<>();
         sp_dao =new SanPhamDAO();
-        ds_sp_cho_ban = sp_dao.LayDanhSachSanPhamGiamGia(null);
+        ds_sp_cho_ban = sp_dao.LayDanhSachSanPhamMoi(null);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(view.getContext(),2,GridLayoutManager.VERTICAL, false);
         SPChoBanAdapter spChoBanAdapter = new SPChoBanAdapter(ds_sp_cho_ban);
         rc_sp_cho_ban.setAdapter(spChoBanAdapter);

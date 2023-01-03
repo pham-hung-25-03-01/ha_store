@@ -14,12 +14,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.tabs.TabLayout;
 import com.ha_store.R;
@@ -75,11 +77,32 @@ public class HomeActivity extends AppCompatActivity {
 
     int i;
 
+    ShapeableImageView btn_ao;
+    ShapeableImageView btn_quan;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         Init();
+        btn_quan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+                Intent intent = new Intent(HomeActivity.this, ShoppingActivity.class);
+                intent.putExtra("loai_san_pham_id", 1);
+                startActivity(intent);
+            }
+        });
+        btn_ao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeActivity.this, ShoppingActivity.class);
+                intent.putExtra("loai_san_pham_id", 2);
+                startActivity(intent);
+            }
+        });
+        bottom_nav.getMenu().findItem(R.id.nav_home).setChecked(true);
         setSliderData();
         setHistorySearchData();
         setOptionData();
@@ -138,13 +161,14 @@ public class HomeActivity extends AppCompatActivity {
             }
 
             private void setShoppingAction() {
+                Intent intent = new Intent(HomeActivity.this, ShoppingActivity.class);
+                intent.putExtra("loai_san_pham_id", -1);
+                startActivity(intent);
             }
 
             private void setHomeAction() {
-                bottom_nav.getMenu().findItem(R.id.nav_home).setChecked(true);
                 bottom_nav.getMenu().findItem(R.id.nav_home).setIcon(getDrawable(R.drawable.ic_home_heart));
                 bottom_nav.getMenu().findItem(R.id.nav_home).setTitle("Cho bạn");
-
             }
 
         });
@@ -256,6 +280,10 @@ public class HomeActivity extends AppCompatActivity {
         btn_search_text = findViewById(R.id.btn_search_text);
         text_animation_move_in = AnimationUtils.loadAnimation(this, R.anim.animation_text_move_in);
         text_animation_move_out = AnimationUtils.loadAnimation(this,R.anim.animation_text_move_out);
+        btn_ao = findViewById(R.id.btn_ao);
+        btn_quan = findViewById(R.id.btn_quan);
+
+        bottom_nav.getMenu().findItem(R.id.nav_home).setChecked(true);
 
         //new
         gh_dao = new GioHangDAO();

@@ -120,4 +120,7 @@ public class DonDatHangDTO extends BaseDTO{
 	public String getNgay_khoi_tao_chu() throws ParseException {
 		return convert_big_decimal_to_date(ngay_khoi_tao);
 	}
+	public String getDiaChi(){
+		return String.format("%s, %s, %s, %s", so_nha, phuong_xa, quan_huyen, tinh_thanh);
+	}
 }
