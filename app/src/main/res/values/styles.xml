@@ -5,4 +5,21 @@
         <item name="cornerSize">10dp</item>
         <item name="color">@color/white</item>
     </style>
+    <style name="customRatingBar"
+        parent="android:style/Widget.Material.RatingBar.Small">
+        <item name="actionBarSize">12dp</item>
+        <item name="colorControlNormal">#BBB8B8</item>
+        <item name="colorControlActivated">#E4B250</item>
+    </style>
+    <style name="customRatingBarXS"
+        parent="android:style/Widget.Material.RatingBar.Small">
+        <item name="actionBarSize">10dp</item>
+        <item name="colorControlNormal">#BBB8B8</item>
+        <item name="colorControlActivated">#E4B250</item>
+    </style>
+    <style name="Smaller_Drawable">
+        <item name="android:textSize">20sp</item>
+        <item name="android:scaleX">0.8</item>
+        <item name="android:scaleY">0.8</item>
+    </style>
 </resources>

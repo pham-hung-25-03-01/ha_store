@@ -24,6 +24,7 @@ public class CartActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
+                startActivity(new Intent(CartActivity.this, HomeActivity.class));
             }
         });
         btn_thanh_toan.setOnClickListener(new View.OnClickListener() {

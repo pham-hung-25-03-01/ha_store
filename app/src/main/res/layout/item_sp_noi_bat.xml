@@ -1,19 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     android:layout_width="wrap_content"
     android:layout_height="170dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_weight="1"
     android:orientation="vertical"
     android:layout_marginEnd="10dp"
     android:clickable="true"
     android:background="?android:attr/selectableItemBackground"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
         <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/sp_hinh"
             android:layout_width="110dp"
             android:layout_height="110dp"
             android:adjustViewBounds="true"
@@ -21,39 +16,37 @@
             android:background="#E0ECE0"
             android:src="@drawable/bg_splash_1"
             app:shapeAppearanceOverlay="@style/border_20" />
-
-    </FrameLayout>
     <TextView
-        android:id="@+id/sp_gia_giam"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="138.000 đ"
+        android:text="TOP"
+        android:gravity="center"
+        android:textAlignment="center"
         android:textStyle="bold"
         android:letterSpacing=".1"
-        android:textSize="12sp"
-        android:paddingStart="4dp"
-        android:paddingTop="4dp"
-        android:textColor="#D15C61"
+        android:textSize="13sp"
+        android:paddingTop="2dp"
+        android:textColor="#B48C4A"
         />
     <TextView
-        android:id="@+id/sp_gia_goc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="255.000 đ"
-        android:textSize="8sp"
-        android:paddingStart="4dp"
+        android:text="8.7kMua lại"
+        android:textSize="9sp"
+        android:textColor="#B48C4A"
+        android:textAlignment="center"
+        android:gravity="center"
         />
 
     <TextView
+        android:id="@+id/txt_ten_sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
-        android:backgroundTint="#D7595B"
-        android:text="Bán chạy"
-        android:textSize="9sp"
-        android:paddingStart="8dp"
-        android:textStyle="bold"
-        android:textColor="@color/white"
-        android:background="@drawable/bg_search"
+        android:backgroundTint="#E3B1B1"
+        android:textAlignment="center"
+        android:text="Quần short thể th..."
+        android:textSize="8sp"
+        android:paddingStart="2dp"
         />
 </LinearLayout>

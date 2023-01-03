@@ -21,9 +21,12 @@ import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.android.material.tabs.TabLayout;
 import com.ha_store.R;
 import com.ha_store.adapter.OptionAdapter;
+import com.ha_store.adapter.OptionProductPageAdapter;
 import com.ha_store.adapter.SPBanChayAdapter;
+import com.ha_store.adapter.SPNoiBatAdapter;
 import com.ha_store.adapter.sliderAdapter;
 import com.ha_store.dao.GioHangDAO;
 import com.ha_store.dao.KhachHangDAO;
@@ -50,22 +53,24 @@ public class HomeActivity extends AppCompatActivity {
     KhachHangDAO kh_dao;
     SanPhamDAO sp_dao;
 
-    private ViewPager2 v2_slider;
+    private ViewPager2 v2_slider,vp_product_option;
     private TextView txt_searched,cart_badge;
     private BottomNavigationView bottom_nav;
     private CircleIndicator3 slider_control;
+
+    TabLayout tabLayout;
 
     ConstraintLayout btn_search_text;
 
     Animation text_animation_move_in,text_animation_move_out;
 
-    RecyclerView rc_option, rc_sp_ban_chay;
+    RecyclerView rc_option, rc_sp_ban_chay, rc_sp_noi_bat;
     List<Photo> photoList;
     List<String> history_search;
     List<Option> optionList;
 
     //new
-    List<SanPhamDTO> ds_sp_ban_chay;
+    List<SanPhamDTO> ds_sp_ban_chay, ds_sp_noi_bat;
     List<LoaiSanPhamDTO> ds_loai_sp;
 
     int i;
@@ -81,6 +86,8 @@ public class HomeActivity extends AppCompatActivity {
 
         //new
         setSPBanChay();
+        setSPNoiBat();
+        setSPTheoLoai();
         setNotifyBottomNav();
         java.util.Timer timer = new java.util.Timer();
         timer.scheduleAtFixedRate(new The_slide_timer(),4000,3000);
@@ -90,7 +97,10 @@ public class HomeActivity extends AppCompatActivity {
         btn_search_text.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(HomeActivity.this, SearchActivity.class));
+                Intent intent = new Intent(HomeActivity.this,
+                        SearchActivity.class);
+                intent.putExtra("key_search", txt_searched.getText());
+                v.getContext().startActivity(intent);
             }
         });
 
@@ -142,8 +152,48 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
+    private void setSPTheoLoai() {
+        OptionProductPageAdapter adapter = new OptionProductPageAdapter(this);
+        vp_product_option.setAdapter(adapter);
+        tabLayout = findViewById(R.id.tabLayout);
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                vp_product_option.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+        vp_product_option.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                tabLayout.getTabAt(position).select();
+            }
+        });
+    }
+
+    private void setSPNoiBat() {
+        ds_sp_noi_bat = sp_dao.LayDanhSachSanPhamGiamGia(4);
+        //  Toast.makeText(this, ds_sp_ban_chay.get(0).get_ten_san_pham()+"du lieu", Toast.LENGTH_SHORT).show();
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this,2,GridLayoutManager.HORIZONTAL, false);
+        SPNoiBatAdapter spNoiBatAdapter = new SPNoiBatAdapter(ds_sp_noi_bat);
+        rc_sp_noi_bat.setAdapter(spNoiBatAdapter);
+        rc_sp_noi_bat.setLayoutManager(layoutManager);
+        rc_sp_noi_bat.setHasFixedSize(true);
+    }
+
+
     private void setSPBanChay() {
-        ds_sp_ban_chay = sp_dao.LayDanhSachSanPhamMoi(null);
+        ds_sp_ban_chay = sp_dao.LayDanhSachSanPhamMoi(4);
       //  Toast.makeText(this, ds_sp_ban_chay.get(0).get_ten_san_pham()+"du lieu", Toast.LENGTH_SHORT).show();
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this,2,GridLayoutManager.HORIZONTAL, false);
         SPBanChayAdapter spBanChayAdapter = new SPBanChayAdapter(ds_sp_ban_chay);
@@ -198,6 +248,8 @@ public class HomeActivity extends AppCompatActivity {
         i=0;
         txt_searched = findViewById(R.id.txt_searched);
         v2_slider =(ViewPager2) findViewById(R.id.v2_slider);
+        vp_product_option =(ViewPager2) findViewById(R.id.vp_product_option);
+
         slider_control = findViewById((R.id.slider_control));
         rc_option =findViewById(R.id.rc_option);
         bottom_nav = findViewById(R.id.bottom_nav);
@@ -209,8 +261,10 @@ public class HomeActivity extends AppCompatActivity {
         gh_dao = new GioHangDAO();
         sp_dao = new SanPhamDAO();
         rc_sp_ban_chay =findViewById(R.id.rc_sp_ban_chay);
+        rc_sp_noi_bat =findViewById(R.id.rc_sp_noi_bat);
 
         ds_sp_ban_chay = new ArrayList<>();
+        ds_sp_noi_bat = new ArrayList<>();
         ds_loai_sp = new ArrayList<>();
 
     }

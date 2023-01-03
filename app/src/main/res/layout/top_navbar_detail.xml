@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/nav_top"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+
+        <LinearLayout
+            android:id="@+id/linearLayout_scan"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="8dp"
+                android:clickable="true"
+                android:background="@drawable/ic_baseline_arrow_back_ios_24"
+                />
+
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_search"
+            android:gravity="center_vertical"
+            android:paddingStart="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/linearLayout_scan"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_photo"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/ic_search"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/btn_search_text"
+                android:layout_width="155dp"
+                android:layout_height="18dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="6dp"
+                android:paddingStart="2dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/btn_photo"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/txt_searched"
+                    android:layout_width="156dp"
+                    android:layout_height="18dp"
+                    android:fontFamily="sans-serif-light"
+                    android:gravity="center_vertical"
+                    android:text="điện thoại realme q5"
+                    android:textColor="#8D909D"
+                    android:textSize="10sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout_wallet"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:background="@drawable/ic_baseline_share_24" />
+            <FrameLayout
+                android:id="@+id/l_cart"
+                android:paddingStart="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/btn_cart"
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/ic_cart"
+                    />
+                <include
+                    android:layout_gravity="end"
+                    layout="@layout/cart_bage"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content" />
+            </FrameLayout>
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/ic_baseline_more_horiz_24" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

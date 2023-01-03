@@ -24,7 +24,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/btn_scan"
+            android:id="@+id/btn_back"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_alignParentStart="true"
@@ -35,7 +35,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@+id/btn_scan"
+            android:layout_toEndOf="@+id/btn_back"
             android:text="Kiểm tra"
             android:layout_centerVertical="true"
             android:textColor="@color/black"
