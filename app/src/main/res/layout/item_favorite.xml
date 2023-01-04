@@ -8,7 +8,7 @@
     >
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/cart_item_img"
+        android:id="@+id/sp_hinh"
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_alignParentStart="true"
@@ -21,7 +21,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@+id/cart_item_img"
+        android:layout_toEndOf="@+id/sp_hinh"
         android:layout_centerVertical="true"
         android:orientation="vertical"
         android:layout_marginEnd="15dp">

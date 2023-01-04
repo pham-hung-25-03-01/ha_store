@@ -207,18 +207,26 @@ public class DetailActivity extends AppCompatActivity {
 
         if(id_kich_thuoc == 0){
                 Toast.makeText(this, "Chưa chọn size sản phẩm", Toast.LENGTH_SHORT).show();
-        }else if(item_da_ton_tai){
-            capNhatSLGioHang(item_gh);
-            Toast.makeText(this, "Đã thêm vào giỏ hàng", Toast.LENGTH_SHORT).show();
-            setDemSoLuongGH();
-        }else{
-            da_them_gh =  gh_dao.ThemSanPhamVaoGioHang(item_gh);
-            if (da_them_gh) {
-                Toast.makeText(this, "Đã thêm vào giỏ hàng", Toast.LENGTH_SHORT).show();
-                setDemSoLuongGH();
-            }else
-                Toast.makeText(this, "Them gio hang loi!", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            if(kho_dao.LaySoLuongSanPham(item_gh.getSan_pham_id(), item_gh.getKich_thuoc_id()) < item_gh.getSo_luong()){
+                Toast.makeText(this, "Số lượng sản phẩm trong kho không đủ", Toast.LENGTH_SHORT).show();
             }
+            else{
+                if(item_da_ton_tai){
+                    capNhatSLGioHang(item_gh);
+                    Toast.makeText(this, "Đã thêm vào giỏ hàng", Toast.LENGTH_SHORT).show();
+                    setDemSoLuongGH();
+                }else{
+                    da_them_gh =  gh_dao.ThemSanPhamVaoGioHang(item_gh);
+                    if (da_them_gh) {
+                        Toast.makeText(this, "Đã thêm vào giỏ hàng", Toast.LENGTH_SHORT).show();
+                        setDemSoLuongGH();
+                    }else
+                        Toast.makeText(this, "Lỗi", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
     }
 
     private void capNhatSLGioHang(GioHangDTO item_gh) {
@@ -228,9 +236,9 @@ public class DetailActivity extends AppCompatActivity {
         item_gh.setSo_luong(item_gh.getSo_luong()+so_luong_da_dat);
         da_tang_sl = gh_dao.CapNhatSLTrongGioHang(item_gh.getKhach_hang_id(),item_gh.getSan_pham_id(),item_gh.getKich_thuoc_id(),item_gh.getSo_luong());
         if (da_tang_sl)
-            Toast.makeText(this, "Da them", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Đã thêm vào giỏ hàng", Toast.LENGTH_SHORT).show();
         else
-            Toast.makeText(this, "Them loi", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Lỗi", Toast.LENGTH_SHORT).show();
     }
 
     private void setDemSoLuongGH() {
