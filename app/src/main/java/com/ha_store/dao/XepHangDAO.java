@@ -56,4 +56,23 @@ public class XepHangDAO extends BaseDAO{
             return false;
         }
     }
+    public XepHangDTO LayXepHangTheoKhachHangId(Integer kh_id, Integer sp_id){
+        try{
+            XepHangDTO xh = null;
+            String query = "SELECT * FROM tb_xep_hang WHERE khach_hang_id = ? AND san_pham_id = ? LIMIT 1";
+            Cursor c = db.rawQuery(query, new String[]{String.valueOf(kh_id),String.valueOf(sp_id)});
+            if(c.moveToNext()) {
+                xh = new XepHangDTO(
+                        c.getInt(0),
+                        c.getInt(1),
+                        c.getInt(2)
+                );
+            }
+            return xh;
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 }

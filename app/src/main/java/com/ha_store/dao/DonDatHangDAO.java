@@ -103,7 +103,6 @@ public class DonDatHangDAO extends BaseDAO{
             return null;
         }
     }
-
     public DonDatHangDTO LayDonDatHangMoi(){
         try{
             DonDatHangDTO ddh = null;

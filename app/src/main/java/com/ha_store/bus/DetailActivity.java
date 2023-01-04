@@ -22,18 +22,22 @@ import android.widget.Toast;
 import com.ha_store.R;
 import com.ha_store.adapter.AnhSPAdapter;
 import com.ha_store.adapter.ProductSizeAdapter;
-import com.ha_store.adapter.SPNoiBatAdapter;
-import com.ha_store.adapter.sliderAdapter;
+import com.ha_store.adapter.BinhLuanAdapter;
+import com.ha_store.dao.BinhLuanDAO;
 import com.ha_store.dao.GioHangDAO;
 import com.ha_store.dao.KhachHangDAO;
 import com.ha_store.dao.KhoDAO;
 import com.ha_store.dao.SanPhamDAO;
 import com.ha_store.dao.YeuThichDAO;
+import com.ha_store.dao.XepHangDAO;
 import com.ha_store.dto.AnhSanPhamDTO;
+import com.ha_store.dto.BinhLuanDTO;
 import com.ha_store.dto.GioHangDTO;
+import com.ha_store.dto.KhachHangDTO;
 import com.ha_store.dto.KichThuocDTO;
 import com.ha_store.dto.SanPhamDTO;
 import com.ha_store.dto.YeuThichDTO;
+import com.ha_store.dto.XepHangDTO;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -47,8 +51,8 @@ public class DetailActivity extends AppCompatActivity {
     int so_luong_dat = 1;
     int tong_gia = 0,gia_giam = 0;
     int kh_id;
-    TextView product_price_sale,product_price,product_discount,product_name,txt_product_rating,cart_item_qty,txt_tong_gia;
-    AppCompatButton btn_sub,btn_plus,btn_them_gio_hang;
+    TextView product_price_sale,product_price,product_discount,product_name,txt_product_rating,cart_item_qty,txt_tong_gia,txt_bl;
+    AppCompatButton btn_sub,btn_plus,btn_them_gio_hang,btn_them_danh_gia;
     ViewPager2 v2_slider_img;
     FrameLayout l_cart;
     ImageView btn_cart;
@@ -61,9 +65,15 @@ public class DetailActivity extends AppCompatActivity {
     DecimalFormat format;
     List<KichThuocDTO> ds_kich_thuoc;
     List<AnhSanPhamDTO> ds_anh_sp;
-    RecyclerView rc_chon_size;
     AppCompatButton btn_yeu_thich;
     YeuThichDAO yeuThichDAO;
+    RecyclerView rc_chon_size,rc_rating;
+    List<BinhLuanDTO> ds_binh_luan;
+    BinhLuanDAO bl_dao;
+    XepHangDAO xh_dao;
+    XepHangDTO xep_hang;
+    RatingBar rb_rate,ratingBar;
+    TextView txt_so_diem,txt_so_diem_1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -145,6 +155,27 @@ public class DetailActivity extends AppCompatActivity {
                 }
             }
         });
+        txt_bl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DetailActivity.this,
+                        BinhLuanActivity.class);
+                intent.putExtra("id", sp_id);
+                v.getContext().startActivity(intent);
+            }
+        });
+        setListBinhLuan();
+        btn_them_danh_gia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(KhachHangDAO.khach_hang_hien_tai.get_da_dang_nhap()){
+                    ThemDanhGia();
+                }else{
+                    hienDiaLogChuaDangNhap();
+                }
+            }
+        });
+        setDanhGiaCuaBan();
     }
 
     private void hienDiaLogChuaDangNhap() {
@@ -260,6 +291,18 @@ public class DetailActivity extends AppCompatActivity {
         setDemSoLuongGH();
         btn_yeu_thich = findViewById(R.id.btn_yeu_thich);
         yeuThichDAO = new YeuThichDAO();
+        txt_bl =findViewById(R.id.txt_bl);
+        rc_rating =findViewById(R.id.rc_rating);
+        ds_binh_luan =new ArrayList<>();
+        bl_dao = new BinhLuanDAO();
+        btn_them_danh_gia = findViewById(R.id.btn_them_danh_gia);
+        xh_dao = new XepHangDAO();
+        rb_rate = findViewById(R.id.rb_rate);
+        ratingBar = findViewById(R.id.ratingBar);
+        txt_so_diem = findViewById(R.id.txt_so_diem);
+        txt_so_diem_1 =findViewById(R.id.txt_so_diem_1);
+        ratingBar.setVisibility(View.GONE);
+        rb_rate.setStepSize(1);
     }
 
     private void setDetailProduct(int id) {
@@ -290,6 +333,66 @@ public class DetailActivity extends AppCompatActivity {
         }
         else{
             btn_yeu_thich.setBackgroundResource(R.drawable.ic_heart_fill);
+        }
+    }
+    private void setListBinhLuan() {
+        ds_binh_luan = bl_dao.LayDanhSachBinhLuanTheoSanPhamId(sp_id);
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this,1,GridLayoutManager.VERTICAL, false);
+        BinhLuanAdapter spBanChayAdapter = new BinhLuanAdapter(ds_binh_luan);
+        rc_rating.setAdapter(spBanChayAdapter);
+        rc_rating.setLayoutManager(layoutManager);
+        rc_rating.setHasFixedSize(true);
+    }
+    private void ThemDanhGia() {
+        int so_diem = (int)rb_rate.getRating();
+        if(so_diem == 0){
+            Toast.makeText(this, "Chưa chọn số điểm", Toast.LENGTH_SHORT).show();
+        }else{
+            xep_hang = new XepHangDTO(sp_id, KhachHangDAO.khach_hang_hien_tai.get_id(),so_diem);
+            boolean da_danh_gia = false;
+            boolean da_cap_nhat_danh_gia =false;
+            XepHangDTO xp = null;
+            xp = xh_dao.LayXepHangTheoKhachHangId(kh_id,sp_id);
+            if(xp==null){
+                da_danh_gia = xh_dao.ThemXepHang(xep_hang);
+                if(da_danh_gia){
+                    Toast.makeText(this, "Da danh gia san pham", Toast.LENGTH_SHORT).show();
+                    setDanhGiaCuaBan();
+                }else
+                    Toast.makeText(this, "Loi", Toast.LENGTH_SHORT).show();
+            }else{
+                da_cap_nhat_danh_gia = xh_dao.CapNhatXepHang(xep_hang);
+                if(da_cap_nhat_danh_gia){
+                    Toast.makeText(this, "Da cap nhat danh gia san pham", Toast.LENGTH_SHORT).show();
+                    setDanhGiaCuaBan();
+                }else
+                    Toast.makeText(this, "Loi", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    private void setDanhGiaCuaBan() {
+        if(KhachHangDAO.khach_hang_hien_tai.get_da_dang_nhap()){
+            int so_diem = 5;
+            XepHangDTO xp = null;
+            xp = xh_dao.LayXepHangTheoKhachHangId(kh_id,sp_id);
+            if(xp!=null){
+                so_diem = xp.getDiem_xep_hang();
+                rb_rate.setRating(so_diem);
+                ratingBar.setRating(so_diem);
+                txt_so_diem.setText(String.valueOf(so_diem));
+                ratingBar.setVisibility(View.VISIBLE);
+                txt_so_diem.setVisibility(View.VISIBLE);
+                txt_so_diem_1.setVisibility(View.VISIBLE);
+            }else{
+                txt_so_diem.setText("Chưa đánh giá");
+                txt_so_diem.setVisibility(View.VISIBLE);
+                txt_so_diem_1.setVisibility(View.VISIBLE);
+            }
+        }else{
+            txt_so_diem_1.setVisibility(View.GONE);
+            ratingBar.setVisibility(View.GONE);
+            txt_so_diem.setVisibility(View.GONE);
         }
     }
 }
