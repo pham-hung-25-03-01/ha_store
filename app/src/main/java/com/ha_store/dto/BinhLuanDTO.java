@@ -18,6 +18,13 @@ public class BinhLuanDTO extends BaseDTO{
         this.ngay_binh_luan = ngay_binh_luan;
     }
 
+    public BinhLuanDTO(Integer khach_hang_id, Integer san_pham_id, String noi_dung, BigDecimal ngay_binh_luan) {
+        this.khach_hang_id = khach_hang_id;
+        this.san_pham_id = san_pham_id;
+        this.noi_dung = noi_dung;
+        this.ngay_binh_luan = ngay_binh_luan;
+    }
+
     public Integer getId() {
         return id;
     }
