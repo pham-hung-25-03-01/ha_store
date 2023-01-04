@@ -85,6 +85,7 @@ public class AccountActivity extends AppCompatActivity {
             private void setShoppingAction() {
                 Intent intent = new Intent(AccountActivity.this, ShoppingActivity.class);
                 intent.putExtra("loai_san_pham_id", -1);
+                intent.putExtra("key_word", "");
                 startActivity(intent);
             }
 

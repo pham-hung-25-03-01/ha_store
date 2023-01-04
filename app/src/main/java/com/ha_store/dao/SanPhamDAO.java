@@ -232,18 +232,26 @@ public class SanPhamDAO extends BaseDAO{
             return null;
         }
     }
-    public List<SanPhamDTO> LayDanhSachSanPhamTheoLoai(Integer loai_san_pham_id){
+    public List<SanPhamDTO> LayDanhSachSanPhamTheoLoai(Integer loai_san_pham_id, String key_word){
         try {
             List<SanPhamDTO> ds_san_pham = new ArrayList<>();
             String query = "SELECT * FROM tb_san_pham";
             Cursor c;
-            if(loai_san_pham_id == null){
+            if(loai_san_pham_id == null && key_word == null){
                 c = db.rawQuery(query, null);
             }
-            else{
-                query += " WHERE loai_san_pham_id = ?";
-                c = db.rawQuery(query, new String[]{String.valueOf(loai_san_pham_id)});
-            }
+            else if(loai_san_pham_id != null && key_word == null){
+                    query += " WHERE loai_san_pham_id = ?";
+                    c = db.rawQuery(query, new String[]{String.valueOf(loai_san_pham_id)});
+                }
+                else if(loai_san_pham_id == null && key_word != null){
+                    query += " WHERE LOWER(ten_san_pham) LIKE LOWER(?)";
+                    c = db.rawQuery(query, new String[]{"%" + key_word + "%"});
+                }
+                else {
+                    query += " WHERE loai_san_pham_id = ? AND LOWER(ten_san_pham) LIKE LOWER(?)";
+                    c = db.rawQuery(query, new String[]{String.valueOf(loai_san_pham_id), "%" + key_word + "%"});
+                }
             while(c.moveToNext()){
                 ds_san_pham.add(new SanPhamDTO(
                         c.getInt(0),

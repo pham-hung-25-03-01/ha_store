@@ -67,7 +67,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/btn_search_icon"
+                app:layout_constraintEnd_toStartOf="@+id/linearLayout"
                 app:layout_constraintStart_toEndOf="@id/btn_photo"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -76,7 +76,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
-                    android:text="điện thoại realme q5"
+                    android:text="Áo"
                     android:textColor="#8D909D"
                     android:textSize="11sp"
                     android:fontFamily="sans-serif-light"
@@ -87,7 +87,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
-                android:id="@+id/btn_search_icon"
+                android:id="@+id/linearLayout"
                 android:layout_width="48dp"
                 android:layout_height="match_parent"
                 android:layout_marginTop="4dp"
@@ -99,6 +99,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
                 <ImageView
+                    android:id="@+id/btn_tim_kiem"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:padding="6dp"
@@ -207,7 +208,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:textAlignment="textEnd"
-                        android:text="00 : 23 : 41 >"
+                        android:text="Sản phẩm bán chạy"
                         android:textSize="14dp"
                         />
                 </LinearLayout>
@@ -247,7 +248,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:textAlignment="textEnd"
-                        android:text="Xem thêm ngay >"
+                        android:text="Sản phẩm nổi bật"
                         android:textSize="13sp"
                         />
                 </LinearLayout>

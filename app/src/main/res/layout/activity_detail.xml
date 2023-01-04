@@ -33,6 +33,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
                 <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_back"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_marginStart="8dp"
@@ -274,6 +275,7 @@
                         android:textSize="10sp" />
 
                     <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_yeu_thich"
                         android:layout_width="26dp"
                         android:layout_height="26dp"
                         android:layout_marginStart="5dp"

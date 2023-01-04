@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -26,6 +28,7 @@ public class ShoppingActivity extends AppCompatActivity {
     SanPhamDAO sanPhamDAO;
     List<SanPhamDTO> ds_sp;
     BottomNavigationView bottom_nav;
+    TextView txt_khong_tim_thay_san_pham;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +39,8 @@ public class ShoppingActivity extends AppCompatActivity {
     private void Init(){
         Intent intent = getIntent();
         Integer loai_san_pham_id = intent.getExtras().getInt("loai_san_pham_id") == -1 ? null : intent.getExtras().getInt("loai_san_pham_id");
-        ds_sp = sanPhamDAO.LayDanhSachSanPhamTheoLoai(loai_san_pham_id);
+        String key_word = intent.getExtras().getString("key_word").equals("") ? null : intent.getExtras().getString("key_word");
+        ds_sp = sanPhamDAO.LayDanhSachSanPhamTheoLoai(loai_san_pham_id, key_word);
         r_san_pham = findViewById(R.id.r_san_pham);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this,2,GridLayoutManager.VERTICAL, false);
         SPChoBanAdapter spChoBanAdapter = new SPChoBanAdapter(ds_sp);
@@ -84,5 +88,7 @@ public class ShoppingActivity extends AppCompatActivity {
                 startActivity(new Intent(ShoppingActivity.this, HomeActivity.class));
             }
         });
+        txt_khong_tim_thay_san_pham = findViewById(R.id.txt_khong_tim_thay_san_pham);
+        txt_khong_tim_thay_san_pham.setVisibility(ds_sp.size() > 0 ? View.GONE : View.VISIBLE);
     }
 }

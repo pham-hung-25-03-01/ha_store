@@ -9,6 +9,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
         <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/sp_hinh"
             android:layout_width="110dp"
             android:layout_height="110dp"
             android:adjustViewBounds="true"

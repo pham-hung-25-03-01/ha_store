@@ -14,17 +14,23 @@ import com.bumptech.glide.Glide;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.ha_store.R;
 import com.ha_store.bus.DetailActivity;
+import com.ha_store.dao.SanPhamDAO;
+import com.ha_store.dto.AnhSanPhamDTO;
 import com.ha_store.dto.SanPhamDTO;
 
 import java.text.DecimalFormat;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SPBanChayAdapter extends RecyclerView.Adapter<SPBanChayAdapter.ViewHolder> {
     List<SanPhamDTO> ds_sp_ban_chay;
+    List<AnhSanPhamDTO> list_anh;
+    SanPhamDAO sp_dao;
 
     public SPBanChayAdapter(List<SanPhamDTO> ds_sp_ban_chay) {
         this.ds_sp_ban_chay = ds_sp_ban_chay;
+        sp_dao = new SanPhamDAO();
     }
 
     @NonNull
@@ -41,11 +47,15 @@ public class SPBanChayAdapter extends RecyclerView.Adapter<SPBanChayAdapter.View
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         SanPhamDTO sp = ds_sp_ban_chay.get(position);
         DecimalFormat format = new DecimalFormat("###,###,###");
+        list_anh = new ArrayList<>();
 
-        //List<AnhSanPhamDTO> list_anh  = new ArrayList<>();
+        list_anh = sp_dao.LayDanhSachAnhSanPham(sp.get_id());
 
-        //Glide.with(holder.context).load(sp.).placeholder(R.drawable.ic_launcher_background).into(holder.option_img);
-
+        if(list_anh.size()>0){
+            Glide.with(holder.context).load(list_anh.get(0).getAnh_san_pham_url().toString()).placeholder(R.drawable.ic_launcher_background).into(holder.sp_hinh);
+        }else{
+            Glide.with(holder.context).load("https://thumbs.dreamstime.com/b/icono-de-color-rgb-marcador-posici%C3%B3n-galer%C3%ADa-im%C3%A1genes-miniatura-la-foto-%C3%A1lbum-disponible-medios-digitales-archivo-multimedia-187369540.jpg").placeholder(R.drawable.ic_launcher_background).into(holder.sp_hinh);
+        }
         holder.sp_gia_goc.setText(format.format(sp.get_gia_ban()).toString()+"đ");
         int gia_giam = (int)(sp.get_gia_ban().doubleValue()*(1-sp.get_phan_tram_khuyen_mai()));
         holder.sp_gia_giam.setText(format.format(gia_giam).toString()+"đ");

@@ -50,8 +50,8 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                     String password = "123456";
                     kh.set_mat_khau(KhachHangDTO.generateHashedPass(password));
                     if(khachHangDAO.CapNhatThongTinKhachHang(kh)){
-                        SendEmail sendEmail = new SendEmail();
-                        sendEmail.execute(kh.get_email(), "Mật khẩu mới của bạn là: " + password);
+//                        SendEmail sendEmail = new SendEmail();
+//                        sendEmail.execute(kh.get_email(), "Mật khẩu mới của bạn là: " + password);
                         finish();
                         Toast.makeText(getApplicationContext(),"Bạn vui lòng kiểm tra email để nhận mật khẩu mới!",Toast.LENGTH_LONG).show();
                     }else {

@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -79,6 +80,7 @@ public class HomeActivity extends AppCompatActivity {
 
     ShapeableImageView btn_ao;
     ShapeableImageView btn_quan;
+    ImageView btn_tim_kiem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +93,7 @@ public class HomeActivity extends AppCompatActivity {
                 finish();
                 Intent intent = new Intent(HomeActivity.this, ShoppingActivity.class);
                 intent.putExtra("loai_san_pham_id", 1);
+                intent.putExtra("key_word", "");
                 startActivity(intent);
             }
         });
@@ -99,6 +102,17 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(HomeActivity.this, ShoppingActivity.class);
                 intent.putExtra("loai_san_pham_id", 2);
+                intent.putExtra("key_word", "");
+                startActivity(intent);
+            }
+        });
+        btn_tim_kiem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+                Intent intent = new Intent(HomeActivity.this, ShoppingActivity.class);
+                intent.putExtra("loai_san_pham_id", -1);
+                intent.putExtra("key_word", txt_searched.getText().toString());
                 startActivity(intent);
             }
         });
@@ -163,6 +177,7 @@ public class HomeActivity extends AppCompatActivity {
             private void setShoppingAction() {
                 Intent intent = new Intent(HomeActivity.this, ShoppingActivity.class);
                 intent.putExtra("loai_san_pham_id", -1);
+                intent.putExtra("key_word", "");
                 startActivity(intent);
             }
 
@@ -206,9 +221,9 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void setSPNoiBat() {
-        ds_sp_noi_bat = sp_dao.LayDanhSachSanPhamGiamGia(4);
+        ds_sp_noi_bat = sp_dao.LayDanhSachSanPhamMoi(3);
         //  Toast.makeText(this, ds_sp_ban_chay.get(0).get_ten_san_pham()+"du lieu", Toast.LENGTH_SHORT).show();
-        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this,2,GridLayoutManager.HORIZONTAL, false);
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this,3,GridLayoutManager.VERTICAL, false);
         SPNoiBatAdapter spNoiBatAdapter = new SPNoiBatAdapter(ds_sp_noi_bat);
         rc_sp_noi_bat.setAdapter(spNoiBatAdapter);
         rc_sp_noi_bat.setLayoutManager(layoutManager);
@@ -216,9 +231,9 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void setSPBanChay() {
-        ds_sp_ban_chay = sp_dao.LayDanhSachSanPhamMoi(4);
+        ds_sp_ban_chay = sp_dao.LayDanhSachSanPhamBanChay(3);
       //  Toast.makeText(this, ds_sp_ban_chay.get(0).get_ten_san_pham()+"du lieu", Toast.LENGTH_SHORT).show();
-        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this,2,GridLayoutManager.HORIZONTAL, false);
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this,3,GridLayoutManager.VERTICAL, false);
         SPBanChayAdapter spBanChayAdapter = new SPBanChayAdapter(ds_sp_ban_chay);
         rc_sp_ban_chay.setAdapter(spBanChayAdapter);
         rc_sp_ban_chay.setLayoutManager(layoutManager);
@@ -272,7 +287,7 @@ public class HomeActivity extends AppCompatActivity {
         text_animation_move_out = AnimationUtils.loadAnimation(this,R.anim.animation_text_move_out);
         btn_ao = findViewById(R.id.btn_ao);
         btn_quan = findViewById(R.id.btn_quan);
-
+        btn_tim_kiem = findViewById(R.id.btn_tim_kiem);
         bottom_nav.getMenu().findItem(R.id.nav_home).setChecked(true);
 
         //new
@@ -300,9 +315,9 @@ public class HomeActivity extends AppCompatActivity {
     private List<String> getListSearched() {
         List<String> list = new ArrayList<>();
         list.add(new String("Áo dài"));
-        list.add(new String("thời trang mùa hè"));
-        list.add(new String("quần áo"));
-        list.add(new String("sản phẩm giảm giá"));
+        list.add(new String("Quần thun"));
+        list.add(new String("Áo thun"));
+        list.add(new String("Áo sơ mi"));
         return list;
     }
     private List<Option> getListOption() {

@@ -187,7 +187,7 @@ public class DonDatHangDAO extends BaseDAO{
     }
     public boolean ThemCTTT(ChiTietThanhToanDTO cttt){
         try{
-            String query = "INSERT INTO tb_chi_tiet_thanh_toan(hinh_thuc_thanh_toan, hoa_don_id, don_dat_hang_id, so_tien_da_thanh_toan) VALUES (?,?,?,?)";
+            String query = "INSERT INTO tb_chi_tiet_thanh_toan(hinh_thuc_thanh_toan_id, hoa_don_id, don_dat_hang_id, so_tien_da_thanh_toan) VALUES (?,?,?,?)";
             db.execSQL(query,new Object[]{cttt.getHinh_thuc_thanh_toan_id(),cttt.getHoa_don_id(),cttt.getDon_dat_hang_id(),cttt.getSo_tien_da_thanh_toan()});
             return true;
         }catch (Exception e){

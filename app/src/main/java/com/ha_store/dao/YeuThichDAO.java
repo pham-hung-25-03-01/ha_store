@@ -98,4 +98,18 @@ public class YeuThichDAO extends BaseDAO{
             return null;
         }
     }
+    public YeuThichDTO LayYeuThich(Integer khach_hang_id, Integer san_pham_id){
+        try{
+            YeuThichDTO yt = null;
+            String query = "SELECT * FROM tb_yeu_thich WHERE khach_hang_id = ? AND san_pham_id = ? LIMIT 1";
+            Cursor c = db.rawQuery(query, new String[]{String.valueOf(khach_hang_id), String.valueOf(san_pham_id)});
+            if (c.moveToNext()) {
+                yt = new YeuThichDTO(c.getInt(0), c.getInt(1), c.getInt(2));
+            }
+            return yt;
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

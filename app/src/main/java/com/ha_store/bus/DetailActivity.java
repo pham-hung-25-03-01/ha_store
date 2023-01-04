@@ -9,6 +9,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,10 +28,12 @@ import com.ha_store.dao.GioHangDAO;
 import com.ha_store.dao.KhachHangDAO;
 import com.ha_store.dao.KhoDAO;
 import com.ha_store.dao.SanPhamDAO;
+import com.ha_store.dao.YeuThichDAO;
 import com.ha_store.dto.AnhSanPhamDTO;
 import com.ha_store.dto.GioHangDTO;
 import com.ha_store.dto.KichThuocDTO;
 import com.ha_store.dto.SanPhamDTO;
+import com.ha_store.dto.YeuThichDTO;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -38,6 +41,7 @@ import java.util.List;
 
 public class DetailActivity extends AppCompatActivity {
     public static TextView txt_so_luong,txt_size;
+    AppCompatButton btn_back;
     public static int so_luong = 1, id_kich_thuoc = 0;
     int sp_id;
     int so_luong_dat = 1;
@@ -58,6 +62,8 @@ public class DetailActivity extends AppCompatActivity {
     List<KichThuocDTO> ds_kich_thuoc;
     List<AnhSanPhamDTO> ds_anh_sp;
     RecyclerView rc_chon_size;
+    AppCompatButton btn_yeu_thich;
+    YeuThichDAO yeuThichDAO;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +76,16 @@ public class DetailActivity extends AppCompatActivity {
         setDetailProduct(sp_id);
         setListSize(sp_id);
         setTongGia();
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+                Intent intent = new Intent(DetailActivity.this, ShoppingActivity.class);
+                intent.putExtra("loai_san_pham_id", -1);
+                intent.putExtra("key_word", "");
+                startActivity(intent);
+            }
+        });
         btn_cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -109,6 +125,23 @@ public class DetailActivity extends AppCompatActivity {
                     themVaoGioHang();
                 }else{
                     hienDiaLogChuaDangNhap();
+                }
+            }
+        });
+        setYeuThich();
+        btn_yeu_thich.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                YeuThichDTO yt = yeuThichDAO.LayYeuThich(KhachHangDAO.khach_hang_hien_tai.get_id(), sp.get_id());
+                if(yt == null){
+                    yeuThichDAO.ThemYeuThich(new YeuThichDTO(KhachHangDAO.khach_hang_hien_tai.get_id(), sp.get_id(), 1));
+                    btn_yeu_thich.setBackgroundResource(R.drawable.ic_heart_fill);
+                    Toast.makeText(getApplicationContext(),"Đã thêm yêu thích",Toast.LENGTH_LONG).show();
+                }
+                else{
+                    yeuThichDAO.XoaYeuThich(KhachHangDAO.khach_hang_hien_tai.get_id(), sp.get_id());
+                    btn_yeu_thich.setBackgroundResource(R.drawable.ic_heart);
+                    Toast.makeText(getApplicationContext(),"Đã hủy yêu thích",Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -206,6 +239,7 @@ public class DetailActivity extends AppCompatActivity {
         product_price_sale =findViewById(R.id.product_price_sale);
         txt_so_luong =findViewById(R.id.txt_so_luong);
         txt_size =findViewById(R.id.txt_size);
+        btn_back = findViewById(R.id.btn_back);
         product_price =findViewById(R.id.product_price);
         product_discount =findViewById(R.id.product_discount);
         product_name =findViewById(R.id.product_name);
@@ -224,7 +258,8 @@ public class DetailActivity extends AppCompatActivity {
         rc_chon_size = findViewById(R.id.rc_chon_size);
         kh_id = KhachHangDAO.khach_hang_hien_tai.get_id();
         setDemSoLuongGH();
-
+        btn_yeu_thich = findViewById(R.id.btn_yeu_thich);
+        yeuThichDAO = new YeuThichDAO();
     }
 
     private void setDetailProduct(int id) {
@@ -247,5 +282,14 @@ public class DetailActivity extends AppCompatActivity {
         ds_anh_sp = sp_dao.LayDanhSachAnhSanPham(id);
         AnhSPAdapter anhSPAdapter = new AnhSPAdapter(this,ds_anh_sp);
         v2_slider_img.setAdapter(anhSPAdapter);
+    }
+    private void setYeuThich(){
+        YeuThichDTO yt = yeuThichDAO.LayYeuThich(KhachHangDAO.khach_hang_hien_tai.get_id(), sp.get_id());
+        if(yt == null){
+            btn_yeu_thich.setBackgroundResource(R.drawable.ic_heart);
+        }
+        else{
+            btn_yeu_thich.setBackgroundResource(R.drawable.ic_heart_fill);
+        }
     }
 }

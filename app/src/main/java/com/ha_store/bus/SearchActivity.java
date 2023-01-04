@@ -1,6 +1,7 @@
 package com.ha_store.bus;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,7 +28,8 @@ public class SearchActivity extends AppCompatActivity {
     String key_search;
     SanPhamDAO sp_dao;
     List<SanPhamDTO> ds_sp_tim_kiem;
-    RecyclerView rc_searched;
+    AppCompatButton btn_tim_kiem;
+    AppCompatButton btn_back;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,37 +37,32 @@ public class SearchActivity extends AppCompatActivity {
         Intent intent = getIntent();
         key_search = intent.getExtras().getString("key_search");
         Init();
-        java.util.Timer timer = new java.util.Timer();
-        txt_search.addTextChangedListener(new TextWatcher() {
+        btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                setDSKetQua();
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
+            public void onClick(View view) {
+                finish();
+                startActivity(new Intent(SearchActivity.this, HomeActivity.class));
             }
         });
-    }
-
-    private void setDSKetQua() {
-        ds_sp_tim_kiem = sp_dao.TimKiemSanPhamTheoTen(txt_search.getText().toString());
-        SearchedAdapter searchedAdapter = new SearchedAdapter(ds_sp_tim_kiem);
-        rc_searched.setAdapter(searchedAdapter);
+        btn_tim_kiem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+                Intent intent = new Intent(SearchActivity.this, ShoppingActivity.class);
+                intent.putExtra("loai_san_pham_id", -1);
+                intent.putExtra("key_word", txt_search.getText().toString());
+                startActivity(intent);
+            }
+        });
     }
 
     private void Init() {
         txt_search = findViewById(R.id.txt_search);
         txt_search.setText(key_search);
+        btn_tim_kiem = findViewById(R.id.btn_tim_kiem);
+        btn_back = findViewById(R.id.btn_back);
         sp_dao = new SanPhamDAO();
         ds_sp_tim_kiem = new ArrayList<>();
-        rc_searched = findViewById(R.id.rc_searched);
     }
 
 }
